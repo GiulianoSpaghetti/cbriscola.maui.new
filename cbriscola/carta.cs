@@ -8,6 +8,7 @@
  */
 
 
+using Microsoft.Maui.Controls.PlatformConfiguration;
 using System;
 
 namespace CBriscola
@@ -30,7 +31,9 @@ namespace CBriscola
 		public static void inizializza(UInt16 n, cartaHelperBriscola h) {
 			for (UInt16 i = 0; i < n; i++) {
 				carte[i] = new carta(i, h);
-                carte[i].img.Source = ImageSource.FromResource("/Resources/Images/n" + i + ".png");
+				carte[i].img = new Image();
+                //                carte[i].img.Source = ImageSource.FromFile(@"/storage/emulated/0/Android/data/com.companyname.cbriscola/files/Mazzi/Napoletano/" + i+".png");
+                carte[i].img.Source = ImageSource.FromFile(@"C:\\Users\\numer\\source\\repos\\" + i+".png");
 			}
 		}
 		public static carta getCarta(UInt16 quale) { return carte[quale]; }
@@ -48,7 +51,7 @@ namespace CBriscola
 
 		public override string ToString()
 		{
-			return $"{valore + 1} di {semeStr}{(stessoSeme(helper.getCartaBriscola())?"*":" ")} ";
+			return $"{ valore + 1} di {semeStr}{(stessoSeme(helper.getCartaBriscola())?"*":" ")} ";
 	    }
 
 		public Image getImmagine()
