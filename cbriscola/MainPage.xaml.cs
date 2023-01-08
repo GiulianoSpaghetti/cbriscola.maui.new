@@ -294,12 +294,12 @@ public partial class MainPage : ContentPage
 
     private async void OnFPShare_Click(object sender, EventArgs e)
     {
-        await Launcher.Default.OpenAsync(new Uri($"https://twitter.com/intent/tweet?text=Con%20la%20CBriscola%20la%20partita%20{g.getNome()}%20contro%20{cpu.getNome()}%20%C3%A8%20finita%20{g.getPunteggio()}%20a%20{cpu.getPunteggio()}&url=https%3A%2F%2Fgithub.com%2Fnumerunix%2Fcbriscolauwp"));
+        await Launcher.Default.OpenAsync(new Uri($"https://twitter.com/intent/tweet?text=Con%20la%20CBriscola%20la%20partita%20{g.getNome()}%20contro%20{cpu.getNome()}%20%C3%A8%20finita%20{g.getPunteggio()}%20a%20{cpu.getPunteggio()}&url=https%3A%2F%2Fgithub.com%2Fnumerunix%2Fcbriscola.maui"));
     }
 
 
     private async void OnSito_Click(object sender, EventArgs e)
     {
-        await Launcher.Default.OpenAsync(new Uri("https://github.com/numerunix/cbriscolauwp"));
+        await Launcher.Default.OpenAsync(new Uri("https://github.com/numerunix/cbriscola.maui"));
     }
 }
