@@ -10,17 +10,17 @@ public partial class MainPage : ContentPage
     private static mazzo m;
     private static carta c, c1, briscola;
     private static Image cartaCpu = new Image {
-        Source = ImageSource.FromResource("cbriscola.Reources.Images.retro_carte_pc.png")
+        Source = ImageSource.FromFile(@"C:\\Users\\numer\\source\\repos\\retro_carte_pc.png")
     };
     private static Image i, i1;
     private static UInt16 secondi = 5;
-    private static TimeSpan delay;
     private static bool avvisaTalloneFinito = true, briscolaDaPunti = false;
+    private static IDispatcherTimer t;
+    private string s;
     elaboratoreCarteBriscola e;
     public MainPage()
     {
         this.InitializeComponent();
-        delay = TimeSpan.FromSeconds(secondi);
         e = new elaboratoreCarteBriscola(briscolaDaPunti);
         m = new mazzo(e);
         carta.inizializza(40, cartaHelperBriscola.getIstanza(e));
@@ -59,6 +59,74 @@ public partial class MainPage : ContentPage
         AppInformazioni.Text = "Informazioni";
         AppOpzioni.Text = "Opzioni";
         Briscola.Source = briscola.getImmagine().Source;
+        t = Dispatcher.CreateTimer();
+        t.Interval = TimeSpan.FromSeconds(secondi);
+        t.Tick += (s, e) =>
+        {
+            c = primo.getCartaGiocata();
+            c1 = secondo.getCartaGiocata();
+            if ((c.CompareTo(c1) > 0 && c.stessoSeme(c1)) || (c1.stessoSeme(briscola) && !c.stessoSeme(briscola)))
+            {
+                temp = secondo;
+                secondo = primo;
+                primo = temp;
+            }
+
+            primo.aggiornaPunteggio(secondo);
+            PuntiCpu.Text = $"Punti di {cpu.getNome()}: {cpu.getPunteggio()}";
+            PuntiUtente.Text = $"Punti di {g.getNome()}: {g.getPunteggio()}";
+            if (aggiungiCarte())
+            {
+                NelMazzoRimangono.Text = $"Nel mazzo rimangono {m.getNumeroCarte()} carte";
+                CartaBriscola.Text = $"Il seme di Briscola è: {briscola.getSemeStr()}";
+                if (Briscola.IsVisible && m.getNumeroCarte() == 0)
+                {
+                    NelMazzoRimangono.IsVisible = false;
+                    Briscola.IsVisible = false;
+                }
+                Utente0.Source = g.getImmagine(0).Source;
+                if (cpu.getNumeroCarte() > 1)
+                    Utente1.Source = g.getImmagine(1).Source;
+                if (cpu.getNumeroCarte() > 2)
+                    Utente2.Source = g.getImmagine(2).Source;
+                i.IsVisible = true;
+                i1.IsVisible = true;
+                Giocata0.IsVisible = false;
+                Giocata1.IsVisible = false;
+                if (cpu.getNumeroCarte() == 2)
+                {
+                    Utente2.IsVisible = false;
+                    Cpu2.IsVisible = false;
+                }
+                if (cpu.getNumeroCarte() == 1)
+                {
+                    Utente1.IsVisible = false;
+                    Cpu1.IsVisible = false;
+                }
+                if (primo == cpu)
+                {
+                    i1 = giocaCpu();
+                }
+
+            }
+            else
+            {
+                if (g.getPunteggio() == cpu.getPunteggio())
+                    s = "La partita è patta";
+                else
+                {
+                    if (g.getPunteggio() > cpu.getPunteggio())
+                        s = "Hai vinto";
+                    else
+                        s = "Hai perso";
+                    s = $"{s} per {Math.Abs(g.getPunteggio() - cpu.getPunteggio())}  punti";
+                }
+                fpRisultrato.Text = "La partita è finita. Vuoi effettuare una nuova partita?";
+                Applicazione.IsVisible = false;
+                FinePartita.IsVisible = true;
+            }
+            t.Stop();
+        };
     }
     private Image giocaUtente(Image img)
     {
@@ -189,79 +257,11 @@ public partial class MainPage : ContentPage
 
     private void Image_Tapped(object Sender, EventArgs arg)
     {
-        IDispatcherTimer t;
-        string s;
         Image img = (Image)Sender;
+        t.Start();
         i = giocaUtente(img);
         if (secondo == cpu)
             i1 = giocaCpu();
-        t = Dispatcher.CreateTimer();
-        t.Interval =delay;
-        t.Tick += (s, e) =>
-        {
-            c = primo.getCartaGiocata();
-                c1 = secondo.getCartaGiocata();
-                if ((c.CompareTo(c1) > 0 && c.stessoSeme(c1)) || (c1.stessoSeme(briscola) && !c.stessoSeme(briscola)))
-                {
-                    temp = secondo;
-                    secondo = primo;
-                    primo = temp;
-                }
-
-                primo.aggiornaPunteggio(secondo);
-                PuntiCpu.Text = $"Punti di {cpu.getNome()}: {cpu.getPunteggio()}";
-                PuntiUtente.Text = $"Punti di {g.getNome()}: {g.getPunteggio()}";
-                if (aggiungiCarte())
-                {
-                    NelMazzoRimangono.Text = $"Nel mazzo rimangono {m.getNumeroCarte()} carte";
-                    CartaBriscola.Text = $"Il seme di Briscola è: {briscola.getSemeStr()}";
-                    if (Briscola.IsVisible && m.getNumeroCarte() == 0)
-                    {
-                        NelMazzoRimangono.IsVisible = false;
-                        Briscola.IsVisible = false;
-                    }
-                    Utente0.Source = g.getImmagine(0).Source;
-                    if (cpu.getNumeroCarte() > 1)
-                        Utente1.Source = g.getImmagine(1).Source;
-                    if (cpu.getNumeroCarte() > 2)
-                        Utente2.Source = g.getImmagine(2).Source;
-                    i.IsVisible = true;
-                    i1.IsVisible = true;
-                    Giocata0.IsVisible = false;
-                    Giocata1.IsVisible= false;
-                    if (cpu.getNumeroCarte() == 2)
-                    {
-                        Utente2.IsVisible = false;
-                        Cpu2.IsVisible= false;
-                    }
-                    if (cpu.getNumeroCarte() == 1)
-                    {
-                        Utente1.IsVisible =false;
-                        Cpu1.IsVisible = false;
-                    }
-                    if (primo == cpu)
-                    {
-                        i1 = giocaCpu();
-                    }
-
-                }
-                else
-                {
-                    if (g.getPunteggio() == cpu.getPunteggio())
-                        s = "La partita è patta";
-                    else
-                    {
-                        if (g.getPunteggio() > cpu.getPunteggio())
-                            s = "Hai vinto";
-                        else
-                            s = "Hai perso";
-                        s = $"{s} per {Math.Abs(g.getPunteggio() - cpu.getPunteggio())}  punti";
-                    }
-                    fpRisultrato.Text = "La partita è finita. Vuoi effettuare una nuova partita?";
-                    Applicazione.IsVisible = false;
-                    FinePartita.IsVisible = false;
-                }
-            };
     }
     public void OnOk_Click(Object source, EventArgs evt)
     {
@@ -284,7 +284,7 @@ public partial class MainPage : ContentPage
             txtSecondi.Text = "Valore non valido";
             return;
         }
-        delay = TimeSpan.FromSeconds(secondi);
+        t.Interval = TimeSpan.FromSeconds(secondi);
         NomeUtente.Text = g.getNome();
         NomeCpu.Text = cpu.getNome();
         GOpzioni.IsVisible = false;
