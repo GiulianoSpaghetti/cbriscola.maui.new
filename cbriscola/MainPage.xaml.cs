@@ -1,18 +1,14 @@
 ﻿using CBriscola;
 
+
 namespace cbriscola;
 
 public partial class MainPage : ContentPage
 {
-    int count = 0;
-
     private static giocatore g, cpu, primo, secondo, temp;
     private static mazzo m;
     private static carta c, c1, briscola;
-    private static Image cartaCpu = new Image {
-        //        Source = ImageSource.FromFile(@"/storage/emulated/0/Android/data/com.companyname.cbriscola/files/Mazzi/Napoletano/retro_carte_pc.png")
-        Source = ImageSource.FromFile(@"C:\\Users\\numer\\source\\repos\\retro_carte_pc.png")
-    };
+    private static Image cartaCpu=new Image();
     private static Image i, i1;
     private static UInt16 secondi = 5;
     private static bool avvisaTalloneFinito = true, briscolaDaPunti = false;
@@ -22,7 +18,8 @@ public partial class MainPage : ContentPage
     public MainPage()
     {
         this.InitializeComponent();
-        e = new elaboratoreCarteBriscola(briscolaDaPunti);
+            cartaCpu.Source = ImageSource.FromResource("cbriscola.Resources.Images.retro_carte_pc.png");
+            e = new elaboratoreCarteBriscola(briscolaDaPunti);
         m = new mazzo(e);
         carta.inizializza(40, cartaHelperBriscola.getIstanza(e));
         g = new giocatore(new giocatoreHelperUtente(), "Giulio", 3);

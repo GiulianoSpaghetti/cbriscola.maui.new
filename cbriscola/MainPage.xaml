@@ -89,9 +89,9 @@
             <Label x:Name="lbCartaBriscola" Grid.Row="3" Grid.Column="1" />
             <CheckBox x:Name="cbAvvisaTallone" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" IsChecked="True" />
             <Label x:Name="lbAvvisaTallone" Grid.Row="4" Grid.Column="1" />
-            <Button Text="OK" Clicked="OnOk_Click"  Grid.Row="4" Grid.Column="1"/>
-            <Button x:Name="OpzioniApplicazione" Text="Applicazione" Clicked="OnApp_Click" Grid.Row="5" Grid.Column="0"/>
-            <Button x:Name="OpzioniInformazioni" Text="Informazioni" Grid.Row="5" Grid.Column="1" Clicked="OnInfo_Click" />
+            <Button Text="OK" Clicked="OnOk_Click"  Grid.Row="5" Grid.Column="1"/>
+            <Button x:Name="OpzioniApplicazione" Text="Applicazione" Clicked="OnApp_Click" Grid.Row="6" Grid.Column="0"/>
+            <Button x:Name="OpzioniInformazioni" Text="Informazioni" Grid.Row="6" Grid.Column="1" Clicked="OnInfo_Click" />
         </Grid>
         <Grid x:Name="FinePartita" IsVisible="false">
             <Grid.RowDefinitions>

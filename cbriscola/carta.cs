@@ -32,10 +32,10 @@ namespace CBriscola
 			for (UInt16 i = 0; i < n; i++) {
 				carte[i] = new carta(i, h);
 				carte[i].img = new Image();
-                //                carte[i].img.Source = ImageSource.FromFile(@"/storage/emulated/0/Android/data/com.companyname.cbriscola/files/Mazzi/Napoletano/" + i+".png");
-                carte[i].img.Source = ImageSource.FromFile(@"C:\\Users\\numer\\source\\repos\\" + i+".png");
-			}
-		}
+                    carte[i].img.Source = ImageSource.FromResource("cbriscola.Resources.Images.n" + i + ".png");
+
+            }
+        }
 		public static carta getCarta(UInt16 quale) { return carte[quale]; }
 		public UInt16 getSeme() { return seme; }
 		public UInt16 getValore() { return valore; }
