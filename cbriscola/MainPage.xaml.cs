@@ -13,17 +13,20 @@ public partial class MainPage : ContentPage
     private static UInt16 secondi = 5;
     private static bool avvisaTalloneFinito = true, briscolaDaPunti = false;
     private static IDispatcherTimer t;
-    private string s;
     elaboratoreCarteBriscola e;
     public MainPage()
     {
         this.InitializeComponent();
-            cartaCpu.Source = ImageSource.FromResource("cbriscola.Resources.Images.retro_carte_pc.png");
-            e = new elaboratoreCarteBriscola(briscolaDaPunti);
+        cartaCpu.Source = ImageSource.FromResource("cbriscola.Resources.Images.retro_carte_pc.png");
+        briscolaDaPunti = Preferences.Get("briscolaDaPunti", false);
+        avvisaTalloneFinito = Preferences.Get("avvisaTalloneFinito", true);
+        secondi = (UInt16)Preferences.Get("secondi", 5);
+
+        e = new elaboratoreCarteBriscola(briscolaDaPunti);
         m = new mazzo(e);
         carta.inizializza(40, cartaHelperBriscola.getIstanza(e));
-        g = new giocatore(new giocatoreHelperUtente(), "Giulio", 3);
-        cpu = new giocatore(new giocatoreHelperCpu(elaboratoreCarteBriscola.getCartaBriscola()), "Cpu", 3);
+        g = new giocatore(new giocatoreHelperUtente(), Preferences.Get("nomeUtente", "Giulio"), 3);
+        cpu = new giocatore(new giocatoreHelperCpu(elaboratoreCarteBriscola.getCartaBriscola()), Preferences.Get("nomeCpu", "Cpu"), 3);
         primo = g;
         secondo = cpu;
         briscola = carta.getCarta(elaboratoreCarteBriscola.getCartaBriscola());
@@ -61,6 +64,7 @@ public partial class MainPage : ContentPage
         t.Interval = TimeSpan.FromSeconds(secondi);
         t.Tick += (s, e) =>
         {
+            Informazioni.Text = "";
             c = primo.getCartaGiocata();
             c1 = secondo.getCartaGiocata();
             if ((c.CompareTo(c1) > 0 && c.stessoSeme(c1)) || (c1.stessoSeme(briscola) && !c.stessoSeme(briscola)))
@@ -100,10 +104,17 @@ public partial class MainPage : ContentPage
                 {
                     Utente1.IsVisible = false;
                     Cpu1.IsVisible = false;
+                    if (avvisaTalloneFinito)
+                        Informazioni.Text = "Il tallone è finito";
                 }
                 if (primo == cpu)
                 {
                     i1 = giocaCpu();
+                    i1 = giocaCpu();
+                    if (cpu.getCartaGiocata().stessoSeme(briscola))
+                        Informazioni.Text = $"La CPU ha giocato il {cpu.getCartaGiocata().getValore() + 1} di Briscola";
+                    else if (cpu.getCartaGiocata().getPunteggio() > 0)
+                        Informazioni.Text = $"La CPU ha giocato il {cpu.getCartaGiocata().getValore() + 1} di {cpu.getCartaGiocata().getSemeStr()}";
                 }
 
             }
@@ -263,16 +274,21 @@ public partial class MainPage : ContentPage
     }
     public void OnOk_Click(Object source, EventArgs evt)
     {
+        Preferences.Set("nomeUtente", txtNomeUtente.Text);
+        Preferences.Set("nomeCpu", txtCpu.Text);
         g.setNome(txtNomeUtente.Text);
         cpu.setNome(txtCpu.Text);
         if (cbCartaBriscola.IsChecked == false)
             briscolaDaPunti = false;
         else
             briscolaDaPunti = true;
+        Preferences.Set("briscolaDaPunti", briscolaDaPunti);
         if (cbAvvisaTallone.IsChecked == false)
             avvisaTalloneFinito = false;
         else
             avvisaTalloneFinito = true;
+        Preferences.Set("avvisaTalloneFinito", avvisaTalloneFinito);
+
         try
         {
             secondi = UInt16.Parse(txtSecondi.Text);
@@ -282,6 +298,8 @@ public partial class MainPage : ContentPage
             txtSecondi.Text = "Valore non valido";
             return;
         }
+        Preferences.Set("secondi", secondi);
+
         t.Interval = TimeSpan.FromSeconds(secondi);
         NomeUtente.Text = g.getNome();
         NomeCpu.Text = cpu.getNome();

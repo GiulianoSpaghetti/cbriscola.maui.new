@@ -35,10 +35,9 @@
                 <Image.GestureRecognizers>
                     <TapGestureRecognizer Tapped="Image_Tapped"/>
                 </Image.GestureRecognizers>
-
             </Image>
-            <Image x:Name="Giocata0" Grid.Row="2" Grid.Column="0" />
-            <Image x:Name="Giocata1" Grid.Row="2" Grid.Column="1" />
+            <Image x:Name="Giocata0" Grid.Row="2" Grid.Column="0"/>
+            <Image x:Name="Giocata1" Grid.Row="2" Grid.Column="1"/>
             <Image x:Name="Cpu0" Grid.Row="3" Grid.Column="0" />
             <Image x:Name="Cpu1" Grid.Row="3" Grid.Column="1" />
             <Image x:Name="Cpu2" Grid.Row="3" Grid.Column="2" />
@@ -50,6 +49,7 @@
             <Image x:Name="Briscola" Grid.Row="4" Grid.Column="4" />
             <Button x:Name="AppInformazioni" Text="Informazioni" Grid.Row="5" Grid.Column="0" Clicked="OnInfo_Click" />
             <Button x:Name="AppOpzioni" Text="Opzioni" Grid.Row="5" Grid.Column="1" Clicked="OnOpzioni_Click" />
+            <Label x:Name="Informazioni" Grid.Row="5" Grid.Column="2" />
         </Grid>
         <Grid x:Name="Info" IsVisible="false">
             <Grid.RowDefinitions>
@@ -59,7 +59,7 @@
                 <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <Label Text="CBriscola versione 0.3" Grid.Row="0" />
+            <Label Text="CBriscola versione 1.0" Grid.Row="0" />
             <Label Text="Autore: Giulio Sorrentino" Grid.Row="1" />
             <Label Text="Licenza: GPL v3 o, secondo la tua opionione, qualsiasi versione successiva" Grid.Row="2"/>
             <Button Text="https://github.com/numerunix/CBriscola.maui" Clicked="OnSito_Click" Grid.Row="3" />
