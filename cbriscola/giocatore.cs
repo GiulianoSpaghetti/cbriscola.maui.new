@@ -110,9 +110,10 @@ namespace CBriscola {
 			helper.aggiornaPunteggio(ref punteggio, getCartaGiocata(), g.getCartaGiocata());
 		}
 
-		public Image getImmagine(UInt16 quale)
+		public String getID(UInt16 quale)
 		{
-			return mano[quale].getImmagine();
+			String s = mano[quale].getID();
+			return s;
 		}
 
 		public UInt16 getICartaGiocata()

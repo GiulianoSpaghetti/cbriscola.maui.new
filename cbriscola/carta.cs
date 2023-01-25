@@ -20,7 +20,6 @@ namespace CBriscola
 		private string semeStr;
 		private cartaHelperBriscola helper;
 		private static carta[] carte = new carta[40];
-		private Image img;
 		private carta(UInt16 n, cartaHelperBriscola h) {
 			helper = h;
 			seme = helper.getSeme(n);
@@ -31,8 +30,6 @@ namespace CBriscola
 		public static void inizializza(UInt16 n, cartaHelperBriscola h) {
 			for (UInt16 i = 0; i < n; i++) {
 				carte[i] = new carta(i, h);
-				carte[i].img = new Image();
-                    carte[i].img.Source = ImageSource.FromResource("cbriscola.Resources.Images.n" + i + ".png");
 
             }
         }
@@ -54,9 +51,9 @@ namespace CBriscola
 			return $"{ valore + 1} di {semeStr}{(stessoSeme(helper.getCartaBriscola())?"*":" ")} ";
 	    }
 
-		public Image getImmagine()
+		public String getID()
 		{
-			return img;
+			return $"n{seme*10+valore}";
 		}
 	}
 }

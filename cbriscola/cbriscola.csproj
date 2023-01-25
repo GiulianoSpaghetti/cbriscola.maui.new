@@ -36,26 +36,32 @@
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net6.0-maccatalyst|AnyCPU'">
 	  <ApplicationId>org.altervista.numerone.cbriscola</ApplicationId>
+	  <ApplicationVersion>6</ApplicationVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net6.0-maccatalyst|AnyCPU'">
 	  <ApplicationId>org.altervista.numerone.cbriscola</ApplicationId>
+	  <ApplicationVersion>6</ApplicationVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-android33.0|AnyCPU'">
 	  <ApplicationId>org.altervista.numerone.cbriscola</ApplicationId>
+	  <ApplicationVersion>6</ApplicationVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-android33.0|AnyCPU'">
 	  <ApplicationId>org.altervista.numerone.cbriscola</ApplicationId>
+	  <ApplicationVersion>6</ApplicationVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-windows10.0.22621.0|AnyCPU'">
 	  <ApplicationId>org.altervista.numerone.cbriscola</ApplicationId>
+	  <ApplicationVersion>6</ApplicationVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-windows10.0.22621.0|AnyCPU'">
 	  <ApplicationId>org.altervista.numerone.cbriscola</ApplicationId>
+	  <ApplicationVersion>6</ApplicationVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -82,105 +88,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiImage Remove="Resources\Images\n0.png" />
-	  <MauiImage Remove="Resources\Images\n1.png" />
-	  <MauiImage Remove="Resources\Images\n10.png" />
-	  <MauiImage Remove="Resources\Images\n11.png" />
-	  <MauiImage Remove="Resources\Images\n12.png" />
-	  <MauiImage Remove="Resources\Images\n13.png" />
-	  <MauiImage Remove="Resources\Images\n14.png" />
-	  <MauiImage Remove="Resources\Images\n15.png" />
-	  <MauiImage Remove="Resources\Images\n16.png" />
-	  <MauiImage Remove="Resources\Images\n17.png" />
-	  <MauiImage Remove="Resources\Images\n18.png" />
-	  <MauiImage Remove="Resources\Images\n19.png" />
-	  <MauiImage Remove="Resources\Images\n2.png" />
-	  <MauiImage Remove="Resources\Images\n20.png" />
-	  <MauiImage Remove="Resources\Images\n21.png" />
-	  <MauiImage Remove="Resources\Images\n22.png" />
-	  <MauiImage Remove="Resources\Images\n23.png" />
-	  <MauiImage Remove="Resources\Images\n24.png" />
-	  <MauiImage Remove="Resources\Images\n25.png" />
-	  <MauiImage Remove="Resources\Images\n26.png" />
-	  <MauiImage Remove="Resources\Images\n27.png" />
-	  <MauiImage Remove="Resources\Images\n28.png" />
-	  <MauiImage Remove="Resources\Images\n29.png" />
-	  <MauiImage Remove="Resources\Images\n3.png" />
-	  <MauiImage Remove="Resources\Images\n30.png" />
-	  <MauiImage Remove="Resources\Images\n31.png" />
-	  <MauiImage Remove="Resources\Images\n32.png" />
-	  <MauiImage Remove="Resources\Images\n33.png" />
-	  <MauiImage Remove="Resources\Images\n34.png" />
-	  <MauiImage Remove="Resources\Images\n35.png" />
-	  <MauiImage Remove="Resources\Images\n36.png" />
-	  <MauiImage Remove="Resources\Images\n37.png" />
-	  <MauiImage Remove="Resources\Images\n38.png" />
-	  <MauiImage Remove="Resources\Images\n39.png" />
-	  <MauiImage Remove="Resources\Images\n4.png" />
-	  <MauiImage Remove="Resources\Images\n5.png" />
-	  <MauiImage Remove="Resources\Images\n6.png" />
-	  <MauiImage Remove="Resources\Images\n7.png" />
-	  <MauiImage Remove="Resources\Images\n8.png" />
-	  <MauiImage Remove="Resources\Images\n9.png" />
 	  <MauiImage Remove="Resources\Images\retro_carte_mazzo.png" />
-	  <MauiImage Remove="Resources\Images\retro_carte_pc.jpg" />
-	  <MauiImage Remove="Resources\Images\retro_carte_pc.png" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <Content Include="icon.ico" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <EmbeddedResource Include="Resources\Images\n0.png" />
-	  <EmbeddedResource Include="Resources\Images\n10.png" />
-	  <EmbeddedResource Include="Resources\Images\n13.png" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <EmbeddedResource Include="Resources\Images\n8.png" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <EmbeddedResource Include="Resources\Images\n1.png" />
-	  <EmbeddedResource Include="Resources\Images\n11.png" />
-	  <EmbeddedResource Include="Resources\Images\n12.png" />
-	  <EmbeddedResource Include="Resources\Images\n14.png" />
-	  <EmbeddedResource Include="Resources\Images\n15.png" />
-	  <EmbeddedResource Include="Resources\Images\n16.png" />
-	  <EmbeddedResource Include="Resources\Images\n17.png" />
-	  <EmbeddedResource Include="Resources\Images\n18.png" />
-	  <EmbeddedResource Include="Resources\Images\n19.png" />
-	  <EmbeddedResource Include="Resources\Images\n2.png" />
-	  <EmbeddedResource Include="Resources\Images\n20.png" />
-	  <EmbeddedResource Include="Resources\Images\n21.png" />
-	  <EmbeddedResource Include="Resources\Images\n22.png" />
-	  <EmbeddedResource Include="Resources\Images\n23.png" />
-	  <EmbeddedResource Include="Resources\Images\n24.png" />
-	  <EmbeddedResource Include="Resources\Images\n25.png" />
-	  <EmbeddedResource Include="Resources\Images\n26.png" />
-	  <EmbeddedResource Include="Resources\Images\n27.png" />
-	  <EmbeddedResource Include="Resources\Images\n28.png" />
-	  <EmbeddedResource Include="Resources\Images\n29.png" />
-	  <EmbeddedResource Include="Resources\Images\n3.png" />
-	  <EmbeddedResource Include="Resources\Images\n30.png" />
-	  <EmbeddedResource Include="Resources\Images\n31.png" />
-	  <EmbeddedResource Include="Resources\Images\n32.png" />
-	  <EmbeddedResource Include="Resources\Images\n33.png" />
-	  <EmbeddedResource Include="Resources\Images\n34.png" />
-	  <EmbeddedResource Include="Resources\Images\n35.png" />
-	  <EmbeddedResource Include="Resources\Images\n36.png" />
-	  <EmbeddedResource Include="Resources\Images\n37.png" />
-	  <EmbeddedResource Include="Resources\Images\n38.png" />
-	  <EmbeddedResource Include="Resources\Images\n39.png" />
-	  <EmbeddedResource Include="Resources\Images\n4.png" />
-	  <EmbeddedResource Include="Resources\Images\n5.png" />
-	  <EmbeddedResource Include="Resources\Images\n6.png" />
-	  <EmbeddedResource Include="Resources\Images\n7.png" />
-	  <EmbeddedResource Include="Resources\Images\n9.png" />
-	  <EmbeddedResource Include="Resources\Images\retro_carte_mazzo.png" />
-	  <EmbeddedResource Include="Resources\Images\retro_carte_pc.jpg" />
-	  <EmbeddedResource Include="Resources\Images\retro_carte_pc.png" />
 	</ItemGroup>
 
 </Project>

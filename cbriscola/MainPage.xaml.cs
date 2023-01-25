@@ -1,5 +1,7 @@
 ﻿using CBriscola;
-
+using Microsoft.Maui.Controls;
+using Microsoft.Maui.Storage;
+using System.Reflection;
 
 namespace cbriscola;
 
@@ -8,16 +10,15 @@ public partial class MainPage : ContentPage
     private static giocatore g, cpu, primo, secondo, temp;
     private static mazzo m;
     private static carta c, c1, briscola;
-    private static Image cartaCpu=new Image();
-    private static Image i, i1;
     private static UInt16 secondi = 5;
     private static bool avvisaTalloneFinito = true, briscolaDaPunti = false;
     private static IDispatcherTimer t;
-    elaboratoreCarteBriscola e;
+    private TapGestureRecognizer gesture;
+    private elaboratoreCarteBriscola e;
     public MainPage()
     {
+        Image img;
         this.InitializeComponent();
-        cartaCpu.Source = ImageSource.FromResource("cbriscola.Resources.Images.retro_carte_pc.png");
         briscolaDaPunti = Preferences.Get("briscolaDaPunti", false);
         avvisaTalloneFinito = Preferences.Get("avvisaTalloneFinito", true);
         secondi = (UInt16)Preferences.Get("secondi", 5);
@@ -30,21 +31,20 @@ public partial class MainPage : ContentPage
         primo = g;
         secondo = cpu;
         briscola = carta.getCarta(elaboratoreCarteBriscola.getCartaBriscola());
-        Image[] img = new Image[3];
+        gesture = new TapGestureRecognizer();
+        gesture.Tapped += Image_Tapped;
         for (UInt16 i = 0; i < 3; i++)
         {
             g.addCarta(m);
             cpu.addCarta(m);
 
         }
+        visualizzaImmagine(g.getID(0), 1, 0, true);
+        visualizzaImmagine(g.getID(1), 1, 1, true);
+        visualizzaImmagine(g.getID(2), 1, 2, true);
+
         NomeUtente.Text = g.getNome();
         NomeCpu.Text = cpu.getNome();
-        Utente0.Source = g.getImmagine(0).Source;
-        Utente1.Source = g.getImmagine(1).Source;
-        Utente2.Source = g.getImmagine(2).Source;
-        Cpu0.Source = cartaCpu.Source;
-        Cpu1.Source = cartaCpu.Source;
-        Cpu2.Source = cartaCpu.Source;
         PuntiCpu.Text = $"Punti di {cpu.getNome()}: {cpu.getPunteggio()}";
         PuntiUtente.Text = $"Punti di {g.getNome()}: {g.getPunteggio()}";
         NelMazzoRimangono.Text = $"Nel mazzo rimangono {m.getNumeroCarte()} carte";
@@ -59,7 +59,8 @@ public partial class MainPage : ContentPage
         OpzioniInformazioni.Text = "Informazioni";
         AppInformazioni.Text = "Informazioni";
         AppOpzioni.Text = "Opzioni";
-        Briscola.Source = briscola.getImmagine().Source;
+        visualizzaImmagine(carta.getCarta(elaboratoreCarteBriscola.getCartaBriscola()).getID(), 4, 4, false);
+
         t = Dispatcher.CreateTimer();
         t.Interval = TimeSpan.FromSeconds(secondi);
         t.Tick += (s, e) =>
@@ -67,6 +68,8 @@ public partial class MainPage : ContentPage
             Informazioni.Text = "";
             c = primo.getCartaGiocata();
             c1 = secondo.getCartaGiocata();
+            ((Image)this.FindByName(c.getID())).IsVisible = false;
+            ((Image)this.FindByName(c1.getID())).IsVisible = false;
             if ((c.CompareTo(c1) > 0 && c.stessoSeme(c1)) || (c1.stessoSeme(briscola) && !c.stessoSeme(briscola)))
             {
                 temp = secondo;
@@ -81,36 +84,26 @@ public partial class MainPage : ContentPage
             {
                 NelMazzoRimangono.Text = $"Nel mazzo rimangono {m.getNumeroCarte()} carte";
                 CartaBriscola.Text = $"Il seme di Briscola è: {briscola.getSemeStr()}";
-                if (Briscola.IsVisible && m.getNumeroCarte() == 0)
+                if (m.getNumeroCarte() == 0)
                 {
+                    ((Image)this.FindByName(carta.getCarta(elaboratoreCarteBriscola.getCartaBriscola()).getID())).IsVisible = false;
                     NelMazzoRimangono.IsVisible = false;
-                    Briscola.IsVisible = false;
-                }
-                Utente0.Source = g.getImmagine(0).Source;
-                if (cpu.getNumeroCarte() > 1)
-                    Utente1.Source = g.getImmagine(1).Source;
-                if (cpu.getNumeroCarte() > 2)
-                    Utente2.Source = g.getImmagine(2).Source;
-                i.IsVisible = true;
-                i1.IsVisible = true;
-                Giocata0.IsVisible = false;
-                Giocata1.IsVisible = false;
-                if (cpu.getNumeroCarte() == 2)
-                {
-                    Utente2.IsVisible = false;
-                    Cpu2.IsVisible = false;
-                }
-                if (cpu.getNumeroCarte() == 1)
-                {
-                    Utente1.IsVisible = false;
-                    Cpu1.IsVisible = false;
                     if (avvisaTalloneFinito)
                         Informazioni.Text = "Il tallone è finito";
                 }
+                for (UInt16 i = 0; i < g.getNumeroCarte(); i++)
+                {
+                    visualizzaImmagine(g.getID(i), 1, i, true);
+                    ((Image)this.FindByName("Cpu" + i)).IsVisible = true;
+                }
+                if (cpu.getNumeroCarte() == 2)
+                    Cpu2.IsVisible = false;
+                if (cpu.getNumeroCarte() == 1)
+                    Cpu1.IsVisible = false;
+
                 if (primo == cpu)
                 {
-                    i1 = giocaCpu();
-                    i1 = giocaCpu();
+                    giocaCpu();
                     if (cpu.getCartaGiocata().stessoSeme(briscola))
                         Informazioni.Text = $"La CPU ha giocato il {cpu.getCartaGiocata().getValore() + 1} di Briscola";
                     else if (cpu.getCartaGiocata().getPunteggio() > 0)
@@ -137,25 +130,32 @@ public partial class MainPage : ContentPage
             t.Stop();
         };
     }
-    private Image giocaUtente(Image img)
+
+    private void visualizzaImmagine(String id, UInt16 i, UInt16 j, bool abilitaGesture)
+    {
+        Image img;
+        img = (Image)this.FindByName(id);
+        Applicazione.SetRow(img, i);
+        Applicazione.SetColumn(img, j);
+        img.IsVisible = true;
+        if (abilitaGesture)
+            img.GestureRecognizers.Add(gesture);
+        else
+            img.GestureRecognizers.Clear();
+
+    }
+    private void giocaUtente(Image img)
     {
         UInt16 quale = 0;
-        Image img1 = Utente0;
-        if (img == Utente1)
+        Image img1;
+        for (UInt16 i = 1; i < g.getNumeroCarte(); i++)
         {
-            quale = 1;
-            img1 = Utente1;
+            img1 = (Image)this.FindByName(g.getID(i));
+            if (img.Id == img1.Id)
+                quale = i;
         }
-        if (img == Utente2)
-        {
-            quale = 2;
-            img1 = Utente2;
-        }
-        Giocata0.IsVisible = true;
-        Giocata0.Source = img1.Source;
-        img1.IsVisible = false;
+        visualizzaImmagine(g.getID(quale), 2, 0, false);
         g.gioca(quale);
-        return img1;
     }
 
     private void OnInfo_Click(object sender, EventArgs e)
@@ -185,11 +185,7 @@ public partial class MainPage : ContentPage
 
     private void OnOkFp_Click(object sender, EventArgs evt)
     {
-        bool cartaBriscola = true;
-        FinePartita.IsVisible = false;
-        if (cbCartaBriscola.IsChecked == false)
-            cartaBriscola = false;
-        e = new elaboratoreCarteBriscola(cartaBriscola);
+        e = new elaboratoreCarteBriscola(briscolaDaPunti);
         m = new mazzo(e);
         briscola = carta.getCarta(elaboratoreCarteBriscola.getCartaBriscola());
         g = new giocatore(new giocatoreHelperUtente(), g.getNome(), 3);
@@ -198,33 +194,24 @@ public partial class MainPage : ContentPage
         {
             g.addCarta(m);
             cpu.addCarta(m);
-
         }
-        Utente0.Source = g.getImmagine(0).Source;
-        Utente0.IsVisible = true;
-        Utente1.Source = g.getImmagine(1).Source;
-        Utente1.IsVisible = true;
-        Utente2.Source = g.getImmagine(2).Source;
-        Utente2.IsVisible = true;
-        Cpu0.Source = cartaCpu.Source;
+        visualizzaImmagine(g.getID(0), 1, 0, true);
+        visualizzaImmagine(g.getID(1), 1, 1, true);
+        visualizzaImmagine(g.getID(2), 1, 2, true);
+
         Cpu0.IsVisible = true;
-        Cpu1.Source = cartaCpu.Source;
         Cpu1.IsVisible = true;
-        Cpu2.Source = cartaCpu.Source;
-        Cpu2.IsVisible= true;
-        Giocata0.IsVisible = false;
-        Giocata1.IsVisible = false;
+        Cpu2.IsVisible = true;
         PuntiCpu.Text = $"Punti di {cpu.getNome()}: {cpu.getPunteggio()}";
         PuntiUtente.Text = $"Punti di {g.getNome()}: {g.getPunteggio()}";
         NelMazzoRimangono.Text = $"Nel mazzo rimangono {m.getNumeroCarte()} carte";
         NelMazzoRimangono.IsVisible = true;
         CartaBriscola.Text = $"Il seme di briscola è: {briscola.getSemeStr()}";
         CartaBriscola.IsVisible = true;
-        Briscola.Source = briscola.getImmagine().Source;
-        Briscola.IsVisible = true;
         primo = g;
         secondo = cpu;
-        Briscola.Source = briscola.getImmagine().Source;
+        visualizzaImmagine(carta.getCarta(elaboratoreCarteBriscola.getCartaBriscola()).getID(), 4, 4, false);
+        FinePartita.IsVisible = false;
         Applicazione.IsVisible = true;
     }
     private void OnCancelFp_Click(object sender, EventArgs e)
@@ -232,7 +219,7 @@ public partial class MainPage : ContentPage
         Application.Current.Quit();
     }
 
-    private Image giocaCpu()
+    private void giocaCpu()
     {
         UInt16 quale = 0;
         Image img1 = Cpu0;
@@ -241,14 +228,9 @@ public partial class MainPage : ContentPage
         else
             cpu.gioca(0, g);
         quale = cpu.getICartaGiocata();
-        if (quale == 1)
-            img1 = Cpu1;
-        if (quale == 2)
-            img1 = Cpu2;
-        Giocata1.IsVisible = true;
-        Giocata1.Source = cpu.getCartaGiocata().getImmagine().Source;
+        img1 = (Image)this.FindByName("Cpu" + quale);
         img1.IsVisible = false;
-        return img1;
+        visualizzaImmagine(cpu.getCartaGiocata().getID(), 2, 2, false);
     }
     private static bool aggiungiCarte()
     {
@@ -268,9 +250,9 @@ public partial class MainPage : ContentPage
     {
         Image img = (Image)Sender;
         t.Start();
-        i = giocaUtente(img);
+        giocaUtente(img);
         if (secondo == cpu)
-            i1 = giocaCpu();
+            giocaCpu();
     }
     public void OnOk_Click(Object source, EventArgs evt)
     {

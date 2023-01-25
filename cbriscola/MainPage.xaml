@@ -21,32 +21,56 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Label x:Name="NomeUtente" Text="Nome Utente" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" />
-            <Image x:Name="Utente0" Grid.Row="1" Grid.Column="0">
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="Image_Tapped"/>
-                </Image.GestureRecognizers>
-            </Image>
-            <Image x:Name="Utente1" Grid.Row="1"  Grid.Column="1">
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="Image_Tapped"/>
-                </Image.GestureRecognizers>
-            </Image>
-            <Image x:Name="Utente2" Grid.Row="1"  Grid.Column="2">
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="Image_Tapped"/>
-                </Image.GestureRecognizers>
-            </Image>
-            <Image x:Name="Giocata0" Grid.Row="2" Grid.Column="0"/>
-            <Image x:Name="Giocata1" Grid.Row="2" Grid.Column="1"/>
-            <Image x:Name="Cpu0" Grid.Row="3" Grid.Column="0" />
-            <Image x:Name="Cpu1" Grid.Row="3" Grid.Column="1" />
-            <Image x:Name="Cpu2" Grid.Row="3" Grid.Column="2" />
+            <Image x:Name="n0" Source="n0.png" IsVisible="false"/>
+            <Image x:Name="n1" Source="n1.png" IsVisible="false"/>
+            <Image x:Name="n2" Source="n2.png" IsVisible="false"/>
+            <Image x:Name="n3" Source="n3.png" IsVisible="false"/>
+            <Image x:Name="n4" Source="n4.png" IsVisible="false"/>
+            <Image x:Name="n5" Source="n5.png" IsVisible="false"/>
+            <Image x:Name="n6" Source="n6.png" IsVisible="false"/>
+            <Image x:Name="n7" Source="n7.png" IsVisible="false"/>
+            <Image x:Name="n8" Source="n8.png" IsVisible="false"/>
+            <Image x:Name="n9" Source="n9.png" IsVisible="false"/>
+            <Image x:Name="n10" Source="n10.png" IsVisible="false"/>
+            <Image x:Name="n11" Source="n11.png" IsVisible="false"/>
+            <Image x:Name="n12" Source="n12.png" IsVisible="false"/>
+            <Image x:Name="n13" Source="n13.png" IsVisible="false"/>
+            <Image x:Name="n14" Source="n14.png" IsVisible="false"/>
+            <Image x:Name="n15" Source="n15.png" IsVisible="false"/>
+            <Image x:Name="n16" Source="n16.png" IsVisible="false"/>
+            <Image x:Name="n17" Source="n17.png" IsVisible="false"/>
+            <Image x:Name="n18" Source="n18.png" IsVisible="false"/>
+            <Image x:Name="n19" Source="n19.png" IsVisible="false"/>
+            <Image x:Name="n20" Source="n20.png" IsVisible="false"/>
+            <Image x:Name="n21" Source="n21.png" IsVisible="false"/>
+            <Image x:Name="n22" Source="n22.png" IsVisible="false"/>
+            <Image x:Name="n23" Source="n23.png" IsVisible="false"/>
+            <Image x:Name="n24" Source="n24.png" IsVisible="false"/>
+            <Image x:Name="n25" Source="n25.png" IsVisible="false"/>
+            <Image x:Name="n26" Source="n26.png" IsVisible="false"/>
+            <Image x:Name="n27" Source="n27.png" IsVisible="false"/>
+            <Image x:Name="n28" Source="n28.png" IsVisible="false"/>
+            <Image x:Name="n29" Source="n29.png" IsVisible="false"/>
+            <Image x:Name="n30" Source="n30.png" IsVisible="false"/>
+            <Image x:Name="n31" Source="n31.png" IsVisible="false"/>
+            <Image x:Name="n32" Source="n32.png" IsVisible="false"/>
+            <Image x:Name="n33" Source="n33.png" IsVisible="false"/>
+            <Image x:Name="n34" Source="n34.png" IsVisible="false"/>
+            <Image x:Name="n35" Source="n35.png" IsVisible="false"/>
+            <Image x:Name="n36" Source="n36.png" IsVisible="false"/>
+            <Image x:Name="n37" Source="n37.png" IsVisible="false"/>
+            <Image x:Name="n38" Source="n38.png" IsVisible="false"/>
+            <Image x:Name="n39" Source="n39.png" IsVisible="false"/>
+
+            <Image x:Name="Cpu0" Source="retro_carte_pc.png" Grid.Row="3" Grid.Column="0"/>
+            <Image x:Name="Cpu1" Source="retro_carte_pc.png" Grid.Row="3" Grid.Column="1"/>
+            <Image x:Name="Cpu2" Source="retro_carte_pc.png" Grid.Row="3" Grid.Column="2"/>
+
             <Label x:Name="NomeCpu" Text="Nome Cpu" Grid.Row="4" Grid.Column="0" Grid.RowSpan="3" />
             <Label x:Name="PuntiUtente" Text="Punti dell'utente" Grid.Row="0" Grid.Column="4" />
             <Label x:Name="PuntiCpu" Text="Punti della Cpu" Grid.Row="1" Grid.Column="4" />
             <Label x:Name="NelMazzoRimangono" Text="Nel Mazzo Rimangono" Grid.Row="2" Grid.Column="4" />
             <Label x:Name="CartaBriscola" Text="Il seme di briscola è" Grid.Row="3" Grid.Column="4" />
-            <Image x:Name="Briscola" Grid.Row="4" Grid.Column="4" />
             <Button x:Name="AppInformazioni" Text="Informazioni" Grid.Row="5" Grid.Column="0" Clicked="OnInfo_Click" />
             <Button x:Name="AppOpzioni" Text="Opzioni" Grid.Row="5" Grid.Column="1" Clicked="OnOpzioni_Click" />
             <Label x:Name="Informazioni" Grid.Row="5" Grid.Column="2" />
@@ -58,12 +82,16 @@
                 <RowDefinition />
                 <RowDefinition />
                 <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
             </Grid.RowDefinitions>
-            <Label Text="CBriscola versione 1.0" Grid.Row="0" />
-            <Label Text="Autore: Giulio Sorrentino" Grid.Row="1" />
-            <Label Text="Licenza: GPL v3 o, secondo la tua opionione, qualsiasi versione successiva" Grid.Row="2"/>
-            <Button Text="https://github.com/numerunix/CBriscola.maui" Clicked="OnSito_Click" Grid.Row="3" />
-            <Button x:Name="InfoApplicazione" Text="Applicazione" Clicked="OnApp_Click" Grid.Row="4"/>
+            <Label Text="CBriscola versione 1.1" Grid.Row="0" />
+            <Label Text="Simulatore del gioco della briscola a due giocatori senza multiplayer"  Grid.Row="1"/>
+            <Label Text="Autore: Giulio Sorrentino" Grid.Row="2" />
+            <Label Text="Licenza: GPL v3 o, secondo la tua opionione, qualsiasi versione successiva" Grid.Row="3"/>
+            <Label Text="Le immagini delle carte sono di proprità della Modiano" Grid.Row="4" />
+            <Button Text="https://github.com/numerunix/CBriscola.maui" Clicked="OnSito_Click" Grid.Row="5" />
+            <Button x:Name="InfoApplicazione" Text="Applicazione" Clicked="OnApp_Click" Grid.Row="6"/>
         </Grid>
         <Grid x:Name="GOpzioni" IsVisible="false">
             <Grid.ColumnDefinitions>
