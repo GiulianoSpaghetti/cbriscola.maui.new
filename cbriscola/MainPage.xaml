@@ -85,7 +85,7 @@
                 <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <Label Text="CBriscola versione 1.1.1" Grid.Row="0" />
+            <Label Text="CBriscola versione 1.1.2" Grid.Row="0" />
             <Label Text="Simulatore del gioco della briscola a due giocatori senza multiplayer"  Grid.Row="1"/>
             <Label Text="Autore: Giulio Sorrentino" Grid.Row="2" />
             <Label Text="Licenza: GPL v3 o, secondo la tua opionione, qualsiasi versione successiva" Grid.Row="3"/>
