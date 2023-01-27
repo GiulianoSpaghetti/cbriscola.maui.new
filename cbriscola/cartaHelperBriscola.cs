@@ -42,10 +42,10 @@ namespace CBriscola {
 		public string getSemeStr(UInt16 Carta) {
 			string s = "a";
 			switch (Carta / 10) {
-				case 0: s = "bastoni"; break;
-                case 1: s = "coppe"; break;
-                case 2: s = "denari"; break;
-                case 3: s = "spade"; break;
+				case 0: s = "sticks"; break;
+                case 1: s = "cups"; break;
+                case 2: s = "denier"; break;
+                case 3: s = "swords"; break;
             }
             return s;
 		}

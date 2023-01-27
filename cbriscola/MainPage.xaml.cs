@@ -44,20 +44,20 @@ public partial class MainPage : ContentPage
 
         NomeUtente.Text = g.getNome();
         NomeCpu.Text = cpu.getNome();
-        PuntiCpu.Text = $"Punti di {cpu.getNome()}: {cpu.getPunteggio()}";
-        PuntiUtente.Text = $"Punti di {g.getNome()}: {g.getPunteggio()}";
-        NelMazzoRimangono.Text = $"Nel Mazzo rimangono {m.getNumeroCarte()} carte";
-        CartaBriscola.Text = $"Il seme di briscola è: {briscola.getSemeStr()}";
-        lbCartaBriscola.Text = "La Carta che designa il seme di briscola può dar punti";
-        lbAvvisaTallone.Text = "Avvisa quando il tallone finisce";
-        opNomeUtente.Text = "Nome Utente";
-        opNomeCpu.Text = "NomeCpu";
-        Secondi.Text = "Secondi";
-        InfoApplicazione.Text = "Applicazione";
-        OpzioniApplicazione.Text = "Applicazione";
-        OpzioniInformazioni.Text = "Informazioni";
-        AppInformazioni.Text = "Informazioni";
-        AppOpzioni.Text = "Opzioni";
+        PuntiCpu.Text = $"{cpu.getNome()} points: {cpu.getPunteggio()}";
+        PuntiUtente.Text = $"{g.getNome()} points: {g.getPunteggio()}";
+        NelMazzoRimangono.Text = $"There are {m.getNumeroCarte()} cards left in the Deck";
+        CartaBriscola.Text = $"The trump suit is: {briscola.getSemeStr()}";
+        lbCartaBriscola.Text = "The Card designating the trump suit can score points";
+        lbAvvisaTallone.Text = "Alerts when the deck ends";
+        opNomeUtente.Text = "Username";
+        opNomeCpu.Text = "CPU name";
+        Secondi.Text = "Seconds during which to show the plays";
+        InfoApplicazione.Text = "Application";
+        OpzioniApplicazione.Text = "Application";
+        OpzioniInformazioni.Text = "Informations";
+        AppInformazioni.Text = "Informations";
+        AppOpzioni.Text = "Options";
         visualizzaImmagine(Carta.getCarta(elaboratoreCarteBriscola.getCartaBriscola()).getID(), 4, 4, false);
 
         t = Dispatcher.CreateTimer();
@@ -77,18 +77,18 @@ public partial class MainPage : ContentPage
             }
 
             primo.aggiornaPunteggio(secondo);
-            PuntiCpu.Text = $"Punti di {cpu.getNome()}: {cpu.getPunteggio()}";
-            PuntiUtente.Text = $"Punti di {g.getNome()}: {g.getPunteggio()}";
+            PuntiCpu.Text = $"{cpu.getNome()} points: {cpu.getPunteggio()}";
+            PuntiUtente.Text = $"{g.getNome()} points: {g.getPunteggio()}";
             if (aggiungiCarte())
             {
-                NelMazzoRimangono.Text = $"Nel Mazzo rimangono {m.getNumeroCarte()} carte";
-                CartaBriscola.Text = $"Il seme di Briscola è: {briscola.getSemeStr()}";
+                NelMazzoRimangono.Text = $"There are {m.getNumeroCarte()} cards left in the Deck";
+                CartaBriscola.Text = $"The trump suit is: {briscola.getSemeStr()}";
                 if (m.getNumeroCarte() == 0)
                 {
                     ((Image)this.FindByName(Carta.getCarta(elaboratoreCarteBriscola.getCartaBriscola()).getID())).IsVisible = false;
                     NelMazzoRimangono.IsVisible = false;
                     if (avvisaTalloneFinito)
-                        Informazioni.Text = "Il tallone è finito";
+                        Informazioni.Text = "The Deck is finished";
                 }
                 for (UInt16 i = 0; i < g.getNumeroCarte(); i++)
                 {
@@ -104,25 +104,25 @@ public partial class MainPage : ContentPage
                 {
                     giocaCpu();
                     if (cpu.getCartaGiocata().stessoSeme(briscola))
-                        Informazioni.Text = $"La CPU ha giocato il {cpu.getCartaGiocata().getValore() + 1} di Briscola";
+                        Informazioni.Text = $"The CPU has played the {cpu.getCartaGiocata().getValore() + 1} of Briscola";
                     else if (cpu.getCartaGiocata().getPunteggio() > 0)
-                        Informazioni.Text = $"La CPU ha giocato il {cpu.getCartaGiocata().getValore() + 1} di {cpu.getCartaGiocata().getSemeStr()}";
+                        Informazioni.Text = $"The CPU has played the {cpu.getCartaGiocata().getValore() + 1} of {cpu.getCartaGiocata().getSemeStr()}";
                 }
 
             }
             else
             {
                 if (g.getPunteggio() == cpu.getPunteggio())
-                    s = "La partita è patta";
+                    s = "The game is drawn";
                 else
                 {
                     if (g.getPunteggio() > cpu.getPunteggio())
-                        s = "Hai vinto";
+                        s = "You won";
                     else
-                        s = "Hai perso";
-                    s = $"{s} per {Math.Abs(g.getPunteggio() - cpu.getPunteggio())}  punti";
+                        s = "Yo losy";
+                    s = $"{s} by {Math.Abs(g.getPunteggio() - cpu.getPunteggio())} points";
                 }
-                fpRisultrato.Text = $"La partita è finita. {s} Vuoi effettuare una nuova partita?";
+                fpRisultrato.Text = $"The match is over. {s} Do you want to start a new game?";
                 Applicazione.IsVisible = false;
                 FinePartita.IsVisible = true;
             }
@@ -201,11 +201,11 @@ public partial class MainPage : ContentPage
         Cpu0.IsVisible = true;
         Cpu1.IsVisible = true;
         Cpu2.IsVisible = true;
-        PuntiCpu.Text = $"Punti di {cpu.getNome()}: {cpu.getPunteggio()}";
-        PuntiUtente.Text = $"Punti di {g.getNome()}: {g.getPunteggio()}";
-        NelMazzoRimangono.Text = $"Nel Mazzo rimangono {m.getNumeroCarte()} carte";
+        PuntiCpu.Text = $"{cpu.getNome()} points: {cpu.getPunteggio()}";
+        PuntiUtente.Text = $"{g.getNome()} points: {g.getPunteggio()}";
+        NelMazzoRimangono.Text = $"There are {m.getNumeroCarte()} cards left in the Deck";
         NelMazzoRimangono.IsVisible = true;
-        CartaBriscola.Text = $"Il seme di briscola è: {briscola.getSemeStr()}";
+        CartaBriscola.Text = $"The trump suit is: {briscola.getSemeStr()}";
         CartaBriscola.IsVisible = true;
         primo = g;
         secondo = cpu;
@@ -276,7 +276,7 @@ public partial class MainPage : ContentPage
         }
         catch (FormatException ex)
         {
-            txtSecondi.Text = "Valore non valido";
+            txtSecondi.Text = "Invalid rvalue";
             return;
         }
         Preferences.Set("secondi", secondi);
@@ -290,7 +290,7 @@ public partial class MainPage : ContentPage
 
     private async void OnFPShare_Click(object sender, EventArgs e)
     {
-        await Launcher.Default.OpenAsync(new Uri($"https://twitter.com/intent/tweet?text=Con%20la%20CBriscola%20la%20partita%20{g.getNome()}%20contro%20{cpu.getNome()}%20%C3%A8%20finita%20{g.getPunteggio()}%20a%20{cpu.getPunteggio()}&url=https%3A%2F%2Fgithub.com%2Fnumerunix%2Fcbriscola.maui"));
+        await Launcher.Default.OpenAsync(new Uri($"https://twitter.com/intent/tweet?text=With%20the%20TRump%20Suit%20Game%20the%20game%20{g.getNome()}%20against%20{cpu.getNome()}%20%is%20finished%20{g.getPunteggio()}%20versus%20{cpu.getPunteggio()}&url=https%3A%2F%2Fgithub.com%2Fnumerunix%2Fcbriscola.maui"));
     }
 
 
