@@ -14,10 +14,8 @@ namespace CBriscola {
 		private UInt16 cartaBriscola;
 		public cartaHelperBriscola(UInt16 briscola) { cartaBriscola = briscola; }
 		private static cartaHelperBriscola istanza;
-		public static cartaHelperBriscola getIstanza(elaboratoreCarteBriscola e) {
+		public static cartaHelperBriscola getIstanza() {
 			if (istanza == null) {
-				if (e == null)
-					throw new ArgumentNullException("Chiamata a cartaHelperBriscola::getIstanza con istanza==NULL e e==NULL");
 				istanza = new cartaHelperBriscola(elaboratoreCarteBriscola.getCartaBriscola());
 			}
 			return istanza;
@@ -56,7 +54,7 @@ namespace CBriscola {
 			return (UInt16)(seme * 10 + valore);
 		}
 
-		public carta getCartaBriscola() { return carta.getCarta(cartaBriscola); }
+		public Carta getCartaBriscola() { return Carta.getCarta(cartaBriscola); }
 
 		public int CompareTo(UInt16 carta, UInt16 carta1) {
 			UInt16 punteggio = getPunteggio(carta),

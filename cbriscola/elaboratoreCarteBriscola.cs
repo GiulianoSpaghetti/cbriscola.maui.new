@@ -44,7 +44,7 @@ namespace CBriscola
 						carta = (UInt16)(carta - valore + 1);
 					}
 					if (!briscolaDaPunti)
-						carta = cartaHelperBriscola.getIstanza(this).getNumero(cartaHelperBriscola.getIstanza(this).getSeme(carta), 1);
+						carta = cartaHelperBriscola.getIstanza().getNumero(cartaHelperBriscola.getIstanza().getSeme(carta), 1);
 					cartaBriscola = carta;
 					inizio = false;
 				}

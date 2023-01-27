@@ -7,9 +7,9 @@ namespace cbriscola;
 
 public partial class MainPage : ContentPage
 {
-    private static giocatore g, cpu, primo, secondo, temp;
+    private static Giocatore g, cpu, primo, secondo, temp;
     private static mazzo m;
-    private static carta c, c1, briscola;
+    private static Carta c, c1, briscola;
     private static UInt16 secondi = 5;
     private static bool avvisaTalloneFinito = true, briscolaDaPunti = false;
     private static IDispatcherTimer t;
@@ -17,7 +17,6 @@ public partial class MainPage : ContentPage
     private elaboratoreCarteBriscola e;
     public MainPage()
     {
-        Image img;
         this.InitializeComponent();
         briscolaDaPunti = Preferences.Get("briscolaDaPunti", false);
         avvisaTalloneFinito = Preferences.Get("avvisaTalloneFinito", true);
@@ -25,12 +24,12 @@ public partial class MainPage : ContentPage
 
         e = new elaboratoreCarteBriscola(briscolaDaPunti);
         m = new mazzo(e);
-        carta.inizializza(40, cartaHelperBriscola.getIstanza(e));
-        g = new giocatore(new giocatoreHelperUtente(), Preferences.Get("nomeUtente", "Giulio"), 3);
-        cpu = new giocatore(new giocatoreHelperCpu(elaboratoreCarteBriscola.getCartaBriscola()), Preferences.Get("nomeCpu", "Cpu"), 3);
+        Carta.inizializza(40, cartaHelperBriscola.getIstanza());
+        g = new Giocatore(new giocatoreHelperUtente(), Preferences.Get("nomeUtente", "Giulio"), 3);
+        cpu = new Giocatore(new giocatoreHelperCpu(elaboratoreCarteBriscola.getCartaBriscola()), Preferences.Get("nomeCpu", "Cpu"), 3);
         primo = g;
         secondo = cpu;
-        briscola = carta.getCarta(elaboratoreCarteBriscola.getCartaBriscola());
+        briscola = Carta.getCarta(elaboratoreCarteBriscola.getCartaBriscola());
         gesture = new TapGestureRecognizer();
         gesture.Tapped += Image_Tapped;
         for (UInt16 i = 0; i < 3; i++)
@@ -54,12 +53,9 @@ public partial class MainPage : ContentPage
         opNomeUtente.Text = "Nome Utente";
         opNomeCpu.Text = "NomeCpu";
         Secondi.Text = "Secondi";
-        InfoApplicazione.Text = "Applicazione";
-        OpzioniApplicazione.Text = "Applicazione";
-        OpzioniInformazioni.Text = "Informazioni";
-        AppInformazioni.Text = "Informazioni";
-        AppOpzioni.Text = "Opzioni";
-        visualizzaImmagine(carta.getCarta(elaboratoreCarteBriscola.getCartaBriscola()).getID(), 4, 4, false);
+        InfoApplicazione.Text = "Chiudi";
+        OpzioniApplicazione.Text = "Chiudi";
+        visualizzaImmagine(Carta.getCarta(elaboratoreCarteBriscola.getCartaBriscola()).getID(), 4, 4, false);
 
         t = Dispatcher.CreateTimer();
         t.Interval = TimeSpan.FromSeconds(secondi);
@@ -86,7 +82,7 @@ public partial class MainPage : ContentPage
                 CartaBriscola.Text = $"Il seme di Briscola è: {briscola.getSemeStr()}";
                 if (m.getNumeroCarte() == 0)
                 {
-                    ((Image)this.FindByName(carta.getCarta(elaboratoreCarteBriscola.getCartaBriscola()).getID())).IsVisible = false;
+                    ((Image)this.FindByName(Carta.getCarta(elaboratoreCarteBriscola.getCartaBriscola()).getID())).IsVisible = false;
                     NelMazzoRimangono.IsVisible = false;
                     if (avvisaTalloneFinito)
                         Informazioni.Text = "Il tallone è finito";
@@ -187,9 +183,9 @@ public partial class MainPage : ContentPage
     {
         e = new elaboratoreCarteBriscola(briscolaDaPunti);
         m = new mazzo(e);
-        briscola = carta.getCarta(elaboratoreCarteBriscola.getCartaBriscola());
-        g = new giocatore(new giocatoreHelperUtente(), g.getNome(), 3);
-        cpu = new giocatore(new giocatoreHelperCpu(elaboratoreCarteBriscola.getCartaBriscola()), cpu.getNome(), 3);
+        briscola = Carta.getCarta(elaboratoreCarteBriscola.getCartaBriscola());
+        g = new Giocatore(new giocatoreHelperUtente(), g.getNome(), 3);
+        cpu = new Giocatore(new giocatoreHelperCpu(elaboratoreCarteBriscola.getCartaBriscola()), cpu.getNome(), 3);
         for (UInt16 i = 0; i < 3; i++)
         {
             g.addCarta(m);
@@ -210,7 +206,7 @@ public partial class MainPage : ContentPage
         CartaBriscola.IsVisible = true;
         primo = g;
         secondo = cpu;
-        visualizzaImmagine(carta.getCarta(elaboratoreCarteBriscola.getCartaBriscola()).getID(), 4, 4, false);
+        visualizzaImmagine(Carta.getCarta(elaboratoreCarteBriscola.getCartaBriscola()).getID(), 4, 4, false);
         FinePartita.IsVisible = false;
         Applicazione.IsVisible = true;
     }
@@ -291,7 +287,7 @@ public partial class MainPage : ContentPage
 
     private async void OnFPShare_Click(object sender, EventArgs e)
     {
-        await Launcher.Default.OpenAsync(new Uri($"https://twitter.com/intent/tweet?text=Con%20la%20CBriscola%20la%20partita%20{g.getNome()}%20contro%20{cpu.getNome()}%20%C3%A8%20finita%20{g.getPunteggio()}%20a%20{cpu.getPunteggio()}&url=https%3A%2F%2Fgithub.com%2Fnumerunix%2Fcbriscola.maui"));
+        await Launcher.Default.OpenAsync(new Uri($"https://twitter.com/intent/tweet?text=Con%20la%20CBriscola%20la%20partita%20{g.getNome()}%20contro%20{cpu.getNome()}%20%C3%A8%20finita%20{g.getPunteggio()}%20a%20{cpu.getPunteggio()}&url=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dorg.altervista.numerone.cbriscola"));
     }
 
 

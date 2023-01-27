@@ -13,14 +13,14 @@ using System;
 
 namespace CBriscola
 {
-	class carta {
+	class Carta {
 		private UInt16 seme,
 				   valore,
 				   punteggio;
 		private string semeStr;
 		private cartaHelperBriscola helper;
-		private static carta[] carte = new carta[40];
-		private carta(UInt16 n, cartaHelperBriscola h) {
+		private static Carta[] carte = new Carta[40];
+		private Carta(UInt16 n, cartaHelperBriscola h) {
 			helper = h;
 			seme = helper.getSeme(n);
 			valore = helper.getValore(n);
@@ -29,17 +29,17 @@ namespace CBriscola
 		}
 		public static void inizializza(UInt16 n, cartaHelperBriscola h) {
 			for (UInt16 i = 0; i < n; i++) {
-				carte[i] = new carta(i, h);
+				carte[i] = new Carta(i, h);
 
             }
         }
-		public static carta getCarta(UInt16 quale) { return carte[quale]; }
+		public static Carta getCarta(UInt16 quale) { return carte[quale]; }
 		public UInt16 getSeme() { return seme; }
 		public UInt16 getValore() { return valore; }
 		public UInt16 getPunteggio() { return punteggio; }
 		public string getSemeStr() { return semeStr; }
-		public bool stessoSeme(carta c1) { if (c1 == null) return false; else return seme == c1.getSeme(); }
-		public int CompareTo(carta c1) {
+		public bool stessoSeme(Carta c1) { if (c1 == null) return false; else return seme == c1.getSeme(); }
+		public int CompareTo(Carta c1) {
 			if (c1 == null)
 				return 1;
 			else

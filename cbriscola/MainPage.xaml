@@ -3,7 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="cbriscola.MainPage"
              Background="Green">
-
+    <ContentPage.MenuBarItems>
+        <MenuBarItem Text="File">
+            <MenuFlyoutItem Text="Opzioni" Clicked="OnOpzioni_Click" />
+            <MenuFlyoutItem Text="Esci" Clicked="OnCancelFp_Click" />
+        </MenuBarItem>
+        <MenuBarItem Text="?">
+            <MenuFlyoutItem Text="Informazioni" Clicked="OnInfo_Click" />
+        </MenuBarItem>
+    </ContentPage.MenuBarItems>
     <Grid>
         <Grid x:Name="Applicazione">
             <Grid.RowDefinitions>
@@ -71,8 +79,6 @@
             <Label x:Name="PuntiCpu" Text="Punti della Cpu" Grid.Row="1" Grid.Column="4" />
             <Label x:Name="NelMazzoRimangono" Text="Nel Mazzo Rimangono" Grid.Row="2" Grid.Column="4" />
             <Label x:Name="CartaBriscola" Text="Il seme di briscola è" Grid.Row="3" Grid.Column="4" />
-            <Button x:Name="AppInformazioni" Text="Informazioni" Grid.Row="5" Grid.Column="0" Clicked="OnInfo_Click" />
-            <Button x:Name="AppOpzioni" Text="Opzioni" Grid.Row="5" Grid.Column="1" Clicked="OnOpzioni_Click" />
             <Label x:Name="Informazioni" Grid.Row="5" Grid.Column="2" />
         </Grid>
         <Grid x:Name="Info" IsVisible="false">
@@ -85,13 +91,13 @@
                 <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <Label Text="CBriscola versione 1.1" Grid.Row="0" />
+            <Label Text="CBriscola versione 1.1.1" Grid.Row="0" />
             <Label Text="Simulatore del gioco della briscola a due giocatori senza multiplayer"  Grid.Row="1"/>
             <Label Text="Autore: Giulio Sorrentino" Grid.Row="2" />
             <Label Text="Licenza: GPL v3 o, secondo la tua opionione, qualsiasi versione successiva" Grid.Row="3"/>
             <Label Text="Le immagini delle carte sono di proprità della Modiano" Grid.Row="4" />
             <Button Text="https://github.com/numerunix/CBriscola.maui" Clicked="OnSito_Click" Grid.Row="5" />
-            <Button x:Name="InfoApplicazione" Text="Applicazione" Clicked="OnApp_Click" Grid.Row="6"/>
+            <Button x:Name="InfoApplicazione" Text="Chiudi" Clicked="OnApp_Click" Grid.Row="6"/>
         </Grid>
         <Grid x:Name="GOpzioni" IsVisible="false">
             <Grid.ColumnDefinitions>
@@ -99,7 +105,6 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition />
                 <RowDefinition />
                 <RowDefinition />
                 <RowDefinition />
@@ -117,9 +122,8 @@
             <Label x:Name="lbCartaBriscola" Grid.Row="3" Grid.Column="1" />
             <CheckBox x:Name="cbAvvisaTallone" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" IsChecked="True" />
             <Label x:Name="lbAvvisaTallone" Grid.Row="4" Grid.Column="1" />
-            <Button Text="OK" Clicked="OnOk_Click"  Grid.Row="5" Grid.Column="1"/>
-            <Button x:Name="OpzioniApplicazione" Text="Applicazione" Clicked="OnApp_Click" Grid.Row="6" Grid.Column="0"/>
-            <Button x:Name="OpzioniInformazioni" Text="Informazioni" Grid.Row="6" Grid.Column="1" Clicked="OnInfo_Click" />
+            <Button Text="OK" Clicked="OnOk_Click"  Grid.Row="5" Grid.Column="0"/>
+            <Button x:Name="OpzioniApplicazione" Text="Annulla" Clicked="OnApp_Click" Grid.Row="5" Grid.Column="1"/>
         </Grid>
         <Grid x:Name="FinePartita" IsVisible="false">
             <Grid.RowDefinitions>
