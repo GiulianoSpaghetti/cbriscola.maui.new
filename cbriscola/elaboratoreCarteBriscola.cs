@@ -14,7 +14,7 @@ namespace CBriscola
 	{
 		private const UInt16 numeroCarte = 40;
 		private bool[] doppione;
-		private static UInt16 cartaBriscola;
+		private static UInt16 CartaBriscola;
 		private bool inizio,
 				 briscolaDaPunti;
 		public static Random r = new Random();
@@ -29,30 +29,30 @@ namespace CBriscola
 		public UInt16 getCarta()
 		{
 			UInt16 fine = (UInt16)(r.Next(0, 39) % numeroCarte),
-			carta = (UInt16)((fine + 1) % numeroCarte);
-			while (doppione[carta] && carta != fine)
-				carta = (UInt16)((carta + 1) % numeroCarte);
-			if (doppione[carta])
+			Carta = (UInt16)((fine + 1) % numeroCarte);
+			while (doppione[Carta] && Carta != fine)
+				Carta = (UInt16)((Carta + 1) % numeroCarte);
+			if (doppione[Carta])
 				throw new ArgumentException("Chiamato elaboratoreCarteItaliane::getCarta() quando non ci sono più carte da elaborare");
 			else
 			{
 				if (inizio)
 				{
-					UInt16 valore = (UInt16)(carta % 10);
+					UInt16 valore = (UInt16)(Carta % 10);
 					if (!briscolaDaPunti && (valore == 0 || valore == 2 || valore > 6))
 					{
-						carta = (UInt16)(carta - valore + 1);
+						Carta = (UInt16)(Carta - valore + 1);
 					}
 					if (!briscolaDaPunti)
-						carta = cartaHelperBriscola.getIstanza(this).getNumero(cartaHelperBriscola.getIstanza(this).getSeme(carta), 1);
-					cartaBriscola = carta;
+						Carta = CartaHelperBriscola.getIstanza(this).getNumero(CartaHelperBriscola.getIstanza(this).getSeme(Carta), 1);
+					CartaBriscola = Carta;
 					inizio = false;
 				}
-				doppione[carta] = true;
-				return carta;
+				doppione[Carta] = true;
+				return Carta;
 			}
 		}
 
-		public static UInt16 getCartaBriscola() { return cartaBriscola; }
+		public static UInt16 getCartaBriscola() { return CartaBriscola; }
 	}
 }

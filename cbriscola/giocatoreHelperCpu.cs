@@ -11,10 +11,10 @@ using System;
 
 namespace CBriscola
 {
-    class giocatoreHelperCpu : giocatoreHelper
+    class GiocatoreHelperCpu : GiocatoreHelper
     {
-        private carta briscola;
-        private UInt16 getBriscola(carta[] mano)
+        private Carta briscola;
+        private UInt16 getBriscola(Carta[] mano)
         {
             UInt16 i;
             for (i = 0; i < mano.Length; i++)
@@ -22,11 +22,11 @@ namespace CBriscola
                     break;
             return i;
         }
-        public giocatoreHelperCpu(UInt16 b)
+        public GiocatoreHelperCpu(UInt16 b)
         {
-            briscola = carta.getCarta(b);
+            briscola = Carta.getCarta(b);
         }
-        private UInt16 getSoprataglio(carta[] mano, carta c, bool maggiore)
+        private UInt16 getSoprataglio(Carta[] mano, Carta c, bool maggiore)
         {
             bool trovata = false;
             UInt16 i;
@@ -55,7 +55,7 @@ namespace CBriscola
             else
                 return (UInt16)mano.Length;
         }
-        public UInt16 gioca(UInt16 x, carta[] mano, UInt16 numeroCarte)
+        public UInt16 gioca(UInt16 x, Carta[] mano, UInt16 numeroCarte)
         {
             UInt16 i;
             for (i = (UInt16)(numeroCarte - 1); i > 0; i--) ;
@@ -64,7 +64,7 @@ namespace CBriscola
             return i;
 
         }
-        public UInt16 gioca(UInt16 x, carta[] mano, UInt16 numeroCarte, carta c)
+        public UInt16 gioca(UInt16 x, Carta[] mano, UInt16 numeroCarte, Carta c)
         {
             UInt16 i = (UInt16)elaboratoreCarteBriscola.r.Next(0, UInt16.MaxValue);
             if (!briscola.stessoSeme(c))
@@ -88,6 +88,6 @@ namespace CBriscola
             i = 0;
             return i;
         }
-        public void aggiornaPunteggio(ref UInt16 punteggioAttuale, carta c, carta c1) { punteggioAttuale = (UInt16)(punteggioAttuale + c.getPunteggio() + c1.getPunteggio()); }
+        public void aggiornaPunteggio(ref UInt16 punteggioAttuale, Carta c, Carta c1) { punteggioAttuale = (UInt16)(punteggioAttuale + c.getPunteggio() + c1.getPunteggio()); }
     }
 }

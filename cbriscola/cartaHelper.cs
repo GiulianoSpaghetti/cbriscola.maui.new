@@ -10,12 +10,12 @@
  using System;
 namespace CBriscola
 {
-	interface cartaHelper
+	interface CartaHelper
 	{
-		UInt16 getSeme(UInt16 carta);
-		UInt16 getValore(UInt16 carta);
-		UInt16 getPunteggio(UInt16 carta);
-		string getSemeStr(UInt16 carta);
+		UInt16 getSeme(UInt16 Carta);
+		UInt16 getValore(UInt16 Carta);
+		UInt16 getPunteggio(UInt16 Carta);
+		string getSemeStr(UInt16 Carta);
 		UInt16 getNumero(UInt16 seme, UInt16 valore);
 	};
 }

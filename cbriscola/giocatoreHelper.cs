@@ -11,11 +11,11 @@ using System;
 
 namespace CBriscola
 {
-	interface giocatoreHelper
+	interface GiocatoreHelper
 	{
-		UInt16 gioca(UInt16 i, carta[] v, UInt16 numeroCarte);
-		UInt16 gioca(UInt16 i, carta[] v, UInt16 numeroCarte, carta c);
-		void aggiornaPunteggio(ref UInt16 punteggio, carta c, carta c1);
+		UInt16 gioca(UInt16 i, Carta[] v, UInt16 numeroCarte);
+		UInt16 gioca(UInt16 i, Carta[] v, UInt16 numeroCarte, Carta c);
+		void aggiornaPunteggio(ref UInt16 punteggio, Carta c, Carta c1);
 
     };
 }

@@ -10,7 +10,7 @@
 using System;
 namespace CBriscola
 {
-    class mazzo
+    class Mazzo
     {
         private UInt16[] carte;
         private UInt16 numeroCarte;
@@ -21,7 +21,7 @@ namespace CBriscola
                 carte[numeroCarte] = elaboratore.getCarta();
         }
 
-        public mazzo(elaboratoreCarte e)
+        public Mazzo(elaboratoreCarte e)
         {
             elaboratore = e;
             carte = new UInt16[40];

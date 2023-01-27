@@ -36,32 +36,38 @@
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net6.0-maccatalyst|AnyCPU'">
 	  <ApplicationId>org.altervista.numerone.cbriscola</ApplicationId>
-	  <ApplicationVersion>6</ApplicationVersion>
+	  <ApplicationVersion>7</ApplicationVersion>
+	  <ApplicationDisplayVersion>1.1.1</ApplicationDisplayVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net6.0-maccatalyst|AnyCPU'">
 	  <ApplicationId>org.altervista.numerone.cbriscola</ApplicationId>
-	  <ApplicationVersion>6</ApplicationVersion>
+	  <ApplicationVersion>7</ApplicationVersion>
+	  <ApplicationDisplayVersion>1.1.1</ApplicationDisplayVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-android33.0|AnyCPU'">
 	  <ApplicationId>org.altervista.numerone.cbriscola</ApplicationId>
-	  <ApplicationVersion>6</ApplicationVersion>
+	  <ApplicationVersion>7</ApplicationVersion>
+	  <ApplicationDisplayVersion>1.1.1</ApplicationDisplayVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-android33.0|AnyCPU'">
 	  <ApplicationId>org.altervista.numerone.cbriscola</ApplicationId>
-	  <ApplicationVersion>6</ApplicationVersion>
+	  <ApplicationVersion>7</ApplicationVersion>
+	  <ApplicationDisplayVersion>1.1.1</ApplicationDisplayVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-windows10.0.22621.0|AnyCPU'">
 	  <ApplicationId>org.altervista.numerone.cbriscola</ApplicationId>
-	  <ApplicationVersion>6</ApplicationVersion>
+	  <ApplicationVersion>7</ApplicationVersion>
+	  <ApplicationDisplayVersion>1.1.1</ApplicationDisplayVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-windows10.0.22621.0|AnyCPU'">
 	  <ApplicationId>org.altervista.numerone.cbriscola</ApplicationId>
-	  <ApplicationVersion>6</ApplicationVersion>
+	  <ApplicationVersion>7</ApplicationVersion>
+	  <ApplicationDisplayVersion>1.1.1</ApplicationDisplayVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -88,7 +94,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiImage Remove="Resources\Images\retro_carte_mazzo.png" />
+	  <MauiImage Remove="Resources\Images\retro_carte_Mazzo.png" />
 	</ItemGroup>
 
 	<ItemGroup>
