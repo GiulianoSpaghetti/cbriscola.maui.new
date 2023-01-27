@@ -36,38 +36,44 @@
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net6.0-maccatalyst|AnyCPU'">
 	  <ApplicationId>org.altervista.numerone.cbriscola</ApplicationId>
-	  <ApplicationVersion>8</ApplicationVersion>
+	  <ApplicationVersion>9</ApplicationVersion>
 	  <ApplicationDisplayVersion>1.1.2</ApplicationDisplayVersion>
+	  <ApplicationTitle>The trump suit game</ApplicationTitle>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net6.0-maccatalyst|AnyCPU'">
 	  <ApplicationId>org.altervista.numerone.cbriscola</ApplicationId>
-	  <ApplicationVersion>8</ApplicationVersion>
+	  <ApplicationVersion>9</ApplicationVersion>
 	  <ApplicationDisplayVersion>1.1.2</ApplicationDisplayVersion>
+	  <ApplicationTitle>The trump suit game</ApplicationTitle>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-android33.0|AnyCPU'">
 	  <ApplicationId>org.altervista.numerone.cbriscola</ApplicationId>
-	  <ApplicationVersion>8</ApplicationVersion>
+	  <ApplicationVersion>9</ApplicationVersion>
 	  <ApplicationDisplayVersion>1.1.2</ApplicationDisplayVersion>
+	  <ApplicationTitle>The trump suit game</ApplicationTitle>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-android33.0|AnyCPU'">
 	  <ApplicationId>org.altervista.numerone.cbriscola</ApplicationId>
-	  <ApplicationVersion>8</ApplicationVersion>
+	  <ApplicationVersion>9</ApplicationVersion>
 	  <ApplicationDisplayVersion>1.1.2</ApplicationDisplayVersion>
+	  <ApplicationTitle>The trump suit game</ApplicationTitle>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-windows10.0.22621.0|AnyCPU'">
 	  <ApplicationId>org.altervista.numerone.cbriscola</ApplicationId>
-	  <ApplicationVersion>8</ApplicationVersion>
+	  <ApplicationVersion>9</ApplicationVersion>
 	  <ApplicationDisplayVersion>1.1.2</ApplicationDisplayVersion>
+	  <ApplicationTitle>The trump suit game</ApplicationTitle>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-windows10.0.22621.0|AnyCPU'">
 	  <ApplicationId>org.altervista.numerone.cbriscola</ApplicationId>
-	  <ApplicationVersion>8</ApplicationVersion>
+	  <ApplicationVersion>9</ApplicationVersion>
 	  <ApplicationDisplayVersion>1.1.2</ApplicationDisplayVersion>
+	  <ApplicationTitle>The trump suit game</ApplicationTitle>
 	</PropertyGroup>
 
 	<ItemGroup>

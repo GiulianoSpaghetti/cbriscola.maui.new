@@ -122,7 +122,7 @@ public partial class MainPage : ContentPage
                         s = "Yo losy";
                     s = $"{s} by {Math.Abs(g.getPunteggio() - cpu.getPunteggio())} points";
                 }
-                fpRisultrato.Text = $"The match is over. {s} Do you want to start a new game?";
+                fpRisultrato.Text = $"The match is over. {s}. Do you want to start a new game?";
                 Applicazione.IsVisible = false;
                 FinePartita.IsVisible = true;
             }
@@ -290,7 +290,7 @@ public partial class MainPage : ContentPage
 
     private async void OnFPShare_Click(object sender, EventArgs e)
     {
-        await Launcher.Default.OpenAsync(new Uri($"https://twitter.com/intent/tweet?text=With%20the%20TRump%20Suit%20Game%20the%20game%20{g.getNome()}%20against%20{cpu.getNome()}%20%is%20finished%20{g.getPunteggio()}%20versus%20{cpu.getPunteggio()}&url=https%3A%2F%2Fgithub.com%2Fnumerunix%2Fcbriscola.maui"));
+        await Launcher.Default.OpenAsync(new Uri($"https://twitter.com/intent/tweet?text=With%20the%20Trump%20Suit%20Game%20the%20game%20{g.getNome()}%versus%20{cpu.getNome()}%20is%20finished%20{g.getPunteggio()}%20at%20{cpu.getPunteggio()}&url=https%3A%2F%2Fgithub.com%2Fnumerunix%2Fcbriscola.maui"));
     }
 
 
