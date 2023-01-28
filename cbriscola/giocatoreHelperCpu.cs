@@ -11,7 +11,7 @@ using System;
 
 namespace org.altervista.numerone.framework
 {
-    class giocatoreHelperCpu : giocatoreHelper
+    class GiocatoreHelperCpu : GiocatoreHelper
     {
         private readonly Carta briscola;
         private UInt16 GetBriscola(Carta[] mano)
@@ -22,7 +22,7 @@ namespace org.altervista.numerone.framework
                     break;
             return i;
         }
-        public giocatoreHelperCpu(UInt16 b)
+        public GiocatoreHelperCpu(UInt16 b)
         {
             briscola = Carta.GetCarta(b);
         }

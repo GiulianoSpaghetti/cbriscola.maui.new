@@ -8,27 +8,27 @@
  */
 
 using System;
-namespace CBriscola
+namespace org.altervista.numerone.framework
 {
-    class mazzo
+    public class Mazzo
     {
         private UInt16[] carte;
         private UInt16 numeroCarte;
-        private elaboratoreCarte elaboratore;
-        private void mischia()
+        private ElaboratoreCarte elaboratore;
+        private void Mischia()
         {
             for (numeroCarte = 0; numeroCarte < 40; numeroCarte++)
-                carte[numeroCarte] = elaboratore.getCarta();
+                carte[numeroCarte] = elaboratore.GetCarta();
         }
 
-        public mazzo(elaboratoreCarte e)
+        public Mazzo(ElaboratoreCarte e)
         {
             elaboratore = e;
             carte = new UInt16[40];
-            mischia();
+            Mischia();
         }
-        public UInt16 getNumeroCarte() { return numeroCarte; }
-        public UInt16 getCarta()
+        public UInt16 GetNumeroCarte() { return numeroCarte; }
+        public UInt16 GetCarta()
         {
             if (numeroCarte > 40)
                 throw new IndexOutOfRangeException();

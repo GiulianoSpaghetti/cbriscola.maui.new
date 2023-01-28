@@ -8,14 +8,14 @@
  */
  
  using System;
-namespace CBriscola
+namespace org.altervista.numerone.framework
 {
-	interface cartaHelper
+	public interface CartaHelper
 	{
-		UInt16 getSeme(UInt16 carta);
-		UInt16 getValore(UInt16 carta);
-		UInt16 getPunteggio(UInt16 carta);
-		string getSemeStr(UInt16 carta);
-		UInt16 getNumero(UInt16 seme, UInt16 valore);
+		UInt16 GetSeme(UInt16 carta);
+		UInt16 GetValore(UInt16 carta);
+		UInt16 GetPunteggio(UInt16 carta);
+		string GetSemeStr(UInt16 carta);
+		UInt16 GetNumero(UInt16 seme, UInt16 valore);
 	};
 }

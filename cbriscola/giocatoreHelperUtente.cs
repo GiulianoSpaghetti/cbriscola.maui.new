@@ -11,9 +11,9 @@ using System;
 
 namespace org.altervista.numerone.framework
 {
-	class giocatoreHelperUtente : giocatoreHelper
+	class GiocatoreHelperUtente : GiocatoreHelper
 	{
-		public giocatoreHelperUtente()
+		public GiocatoreHelperUtente()
 		{
 			;
 		}
