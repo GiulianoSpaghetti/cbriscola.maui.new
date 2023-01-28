@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="cbriscola.OpzioniPage"
+             Title="Opzioni"
+             BackgroundColor="CadetBlue">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Label x:Name="opNomeUtente" Grid.Row="0" Grid.Column="0" Text="Nome Utente" TextColor="White"/>
+        <Entry x:Name="txtNomeUtente" Grid.Row="0" Grid.Column="1" Text="Nome CPU"  TextColor="White"/>
+        <Label x:Name="opNomeCpu" Grid.Row="1" Grid.Column="0"  TextColor="White"/>
+        <Entry x:Name="txtCpu" Grid.Row="1" Grid.Column="1"  TextColor="White"/>
+        <Entry x:Name="txtSecondi" Grid.Row="2" Grid.Column="1"  TextColor="White"/>
+        <Label x:Name="Secondi" Grid.Row="2" Grid.Column="0" Text="Numero di secondi secondo i quali mostrare la giocata"  TextColor="White"/>
+        <CheckBox x:Name="cbCartaBriscola" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" IsChecked="True" />
+        <Label x:Name="lbCartaBriscola" Grid.Row="3" Grid.Column="1" Text="La carta che designa il seme di briscola può dar punti"  TextColor="White"/>
+        <CheckBox x:Name="cbAvvisaTallone" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" IsChecked="True" />
+        <Label x:Name="lbAvvisaTallone" Grid.Row="4" Grid.Column="1" Text="Avvisa quando il tallone finisce"  TextColor="White"/>
+        <Button Text="OK" Clicked="OnOk_Click"  Grid.Row="5" Grid.Column="1" TextColor="White"/>
+    </Grid>
+</ContentPage>

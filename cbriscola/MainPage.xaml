@@ -2,9 +2,10 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="cbriscola.MainPage"
-             Background="Green">
+             BackgroundColor="Green">
     <ContentPage.MenuBarItems>
         <MenuBarItem Text="File">
+            <MenuFlyoutItem Text="Nuova Partita" Clicked="OnNuovaPartita_Click" />
             <MenuFlyoutItem Text="Opzioni" Clicked="OnOpzioni_Click" />
             <MenuFlyoutItem Text="Esci" Clicked="OnCancelFp_Click" />
         </MenuBarItem>
@@ -12,8 +13,8 @@
             <MenuFlyoutItem Text="Informazioni" Clicked="OnInfo_Click" />
         </MenuBarItem>
     </ContentPage.MenuBarItems>
-    <Grid>
-        <Grid x:Name="Applicazione">
+    <ContentPage.Content>
+       <Grid x:Name="Applicazione">
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition />
@@ -28,7 +29,7 @@
                 <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <Label x:Name="NomeUtente" Text="Nome Utente" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" />
+        <Label x:Name="NomeUtente" Text="Nome Utente" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3"  TextColor="White"/>
             <Image x:Name="n0" Source="n0.png" IsVisible="false"/>
             <Image x:Name="n1" Source="n1.png" IsVisible="false"/>
             <Image x:Name="n2" Source="n2.png" IsVisible="false"/>
@@ -74,72 +75,12 @@
             <Image x:Name="Cpu1" Source="retro_carte_pc.png" Grid.Row="3" Grid.Column="1"/>
             <Image x:Name="Cpu2" Source="retro_carte_pc.png" Grid.Row="3" Grid.Column="2"/>
 
-            <Label x:Name="NomeCpu" Text="Nome Cpu" Grid.Row="4" Grid.Column="0" Grid.RowSpan="3" />
-            <Label x:Name="PuntiUtente" Text="Punti dell'utente" Grid.Row="0" Grid.Column="4" />
-            <Label x:Name="PuntiCpu" Text="Punti della Cpu" Grid.Row="1" Grid.Column="4" />
-            <Label x:Name="NelMazzoRimangono" Text="Nel Mazzo Rimangono" Grid.Row="2" Grid.Column="4" />
-            <Label x:Name="CartaBriscola" Text="Il seme di briscola è" Grid.Row="3" Grid.Column="4" />
-            <Label x:Name="Informazioni" Grid.Row="5" Grid.Column="2" />
+            <Label x:Name="NomeCpu" Text="Nome CPU" Grid.Row="4" Grid.Column="0" Grid.RowSpan="3"  TextColor="White"/>
+            <Label x:Name="PuntiUtente" Text="Punti Utente" Grid.Row="0" Grid.Column="4"  TextColor="White"/>
+            <Label x:Name="PuntiCpu" Text="Punti della CPU" Grid.Row="1" Grid.Column="4"  TextColor="White"/>
+            <Label x:Name="NelMazzoRimangono" Text="Nel mazzo rimangono" Grid.Row="2" Grid.Column="4" TextColor="White" />
+            <Label x:Name="CartaBriscola" Text="Il seme di briscola è" Grid.Row="3" Grid.Column="4" TextColor="White" />
+            <Label x:Name="Informazioni" Grid.Row="5" Grid.Column="2"  TextColor="White"/>
         </Grid>
-        <Grid x:Name="Info" IsVisible="false">
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-            </Grid.RowDefinitions>
-            <Label Text="CBriscola versione 1.1.1" Grid.Row="0" />
-            <Label Text="Simulatore del gioco della briscola a due giocatori senza multiplayer"  Grid.Row="1"/>
-            <Label Text="Autore: Giulio Sorrentino" Grid.Row="2" />
-            <Label Text="Licenza: GPL v3 o, secondo la tua opionione, qualsiasi versione successiva" Grid.Row="3"/>
-            <Label Text="Le immagini delle carte sono di proprità della Modiano" Grid.Row="4" />
-            <Button Text="https://github.com/numerunix/CBriscola.maui" Clicked="OnSito_Click" Grid.Row="5" />
-            <Button x:Name="InfoApplicazione" Text="Chiudi" Clicked="OnApp_Click" Grid.Row="6"/>
-        </Grid>
-        <Grid x:Name="GOpzioni" IsVisible="false">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-            </Grid.RowDefinitions>
-            <Label x:Name="opNomeUtente" Grid.Row="0" Grid.Column="0"/>
-            <Entry x:Name="txtNomeUtente" Grid.Row="0" Grid.Column="1" />
-            <Label x:Name="opNomeCpu" Grid.Row="1" Grid.Column="0" />
-            <Entry x:Name="txtCpu" Grid.Row="1" Grid.Column="1" />
-            <Entry x:Name="txtSecondi" Grid.Row="2" Grid.Column="1" />
-            <Label x:Name="Secondi" Grid.Row="2" Grid.Column="0" />
-            <CheckBox x:Name="cbCartaBriscola" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" IsChecked="True" />
-            <Label x:Name="lbCartaBriscola" Grid.Row="3" Grid.Column="1" />
-            <CheckBox x:Name="cbAvvisaTallone" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" IsChecked="True" />
-            <Label x:Name="lbAvvisaTallone" Grid.Row="4" Grid.Column="1" />
-            <Button Text="OK" Clicked="OnOk_Click"  Grid.Row="5" Grid.Column="0"/>
-            <Button x:Name="OpzioniApplicazione" Text="Annulla" Clicked="OnApp_Click" Grid.Row="5" Grid.Column="1"/>
-        </Grid>
-        <Grid x:Name="FinePartita" IsVisible="false">
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <Label x:Name="fpRisultrato" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" />
-            <Button Text="Ok" Clicked="OnOkFp_Click" Grid.Row="1" Grid.Column="0"/>
-            <Button Text="Cancel" Clicked="OnCancelFp_Click" Grid.Row="1" Grid.Column="1" />
-            <Button Text="Share" Clicked="OnFPShare_Click" Grid.Row="1" Grid.Column="2" />
-        </Grid>
-    </Grid>
-
+    </ContentPage.Content>
 </ContentPage>

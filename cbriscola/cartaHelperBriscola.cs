@@ -1,34 +1,34 @@
 /*
  *  This code is distribuited under GPL 3.0 or, at your opinion, any later version
- *  CBriscola 0.1
+ *  CBriscola 2.0
  *
- *  Created by numerunix on 22/05/22.
- *  Copyright 2022 Some rights reserved.
+ *  Created by Giulio Sorrentino on 28/01/23.
+ *  Copyright 2023 Some rights reserved.
  *
  */
 
 using System;
 
 namespace CBriscola {
-	class cartaHelperBriscola : cartaHelper {
-		private UInt16 cartaBriscola;
-		public cartaHelperBriscola(UInt16 briscola) { cartaBriscola = briscola; }
-		private static cartaHelperBriscola istanza;
-		public static cartaHelperBriscola getIstanza() {
+	public class CartaHelperBriscola : CartaHelper {
+		private UInt16 CartaBriscola;
+		public CartaHelperBriscola(UInt16 briscola) { CartaBriscola = briscola; }
+		private static CartaHelperBriscola istanza;
+		public static CartaHelperBriscola getIstanza() {
 			if (istanza == null) {
-				istanza = new cartaHelperBriscola(elaboratoreCarteBriscola.getCartaBriscola());
+				istanza = new CartaHelperBriscola(elaboratoreCarteBriscola.getCartaBriscola());
 			}
 			return istanza;
 		}
-		public UInt16 getSeme(UInt16 carta) {
-			return (UInt16)(carta / 10);
+		public UInt16 getSeme(UInt16 Carta) {
+			return (UInt16)(Carta / 10);
 		}
-		public UInt16 getValore(UInt16 carta) {
-			return (UInt16)(carta % 10);
+		public UInt16 getValore(UInt16 Carta) {
+			return (UInt16)(Carta % 10);
 		}
-		public UInt16 getPunteggio(UInt16 carta) {
+		public UInt16 getPunteggio(UInt16 Carta) {
 			UInt16 valore = 0;
-			switch (carta % 10) {
+			switch (Carta % 10) {
 				case 0: valore = 11; break;
 				case 2: valore = 10; break;
 				case 9: valore = 4; break;
@@ -37,9 +37,9 @@ namespace CBriscola {
 			}
 			return valore;
 		}
-		public string getSemeStr(UInt16 carta) {
+		public string getSemeStr(UInt16 Carta) {
 			string s = "a";
-			switch (carta / 10) {
+			switch (Carta / 10) {
 				case 0: s = "bastoni"; break;
                 case 1: s = "coppe"; break;
                 case 2: s = "denari"; break;
@@ -50,20 +50,20 @@ namespace CBriscola {
 
 		public UInt16 getNumero(UInt16 seme, UInt16 valore) {
 			if (seme > 4 || valore > 9)
-				throw new ArgumentException($"Chiamato cartaHelperBriscola::getNumero con seme={seme} e valore={valore}");
+				throw new ArgumentException($"Chiamato CartaHelperBriscola::getNumero con seme={seme} e valore={valore}");
 			return (UInt16)(seme * 10 + valore);
 		}
 
-		public Carta getCartaBriscola() { return Carta.getCarta(cartaBriscola); }
+		public Carta getCartaBriscola() { return Carta.getCarta(CartaBriscola); }
 
-		public int CompareTo(UInt16 carta, UInt16 carta1) {
-			UInt16 punteggio = getPunteggio(carta),
-				   punteggio1 = getPunteggio(carta1),
-				   valore = getValore(carta),
-				   valore1 = getValore(carta1),
-				   semeBriscola = getSeme(cartaBriscola),
-				   semeCarta = getSeme(carta),
-					  semeCarta1 = getSeme(carta1);
+		public int CompareTo(UInt16 Carta, UInt16 Carta1) {
+			UInt16 punteggio = getPunteggio(Carta),
+				   punteggio1 = getPunteggio(Carta1),
+				   valore = getValore(Carta),
+				   valore1 = getValore(Carta1),
+				   semeBriscola = getSeme(CartaBriscola),
+				   semeCarta = getSeme(Carta),
+					  semeCarta1 = getSeme(Carta1);
 			if (punteggio < punteggio1)
 				return 1;
 			else if (punteggio > punteggio1)
