@@ -157,6 +157,14 @@ public partial class MainPage : ContentPage
 
     private void nuovaPartita()
     {
+        Image img;
+        for (UInt16 i=0; i<40; i++)
+        {
+            img = (Image)this.FindByName(Carta.getCarta(i).getID());
+            img.IsVisible = false;
+            img.GestureRecognizers.Clear();
+
+        }
         e = new elaboratoreCarteBriscola(briscolaDaPunti);
         m = new Mazzo(e);
         briscola = Carta.getCarta(elaboratoreCarteBriscola.getCartaBriscola());
