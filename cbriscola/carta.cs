@@ -1,9 +1,9 @@
 /*
  *  This code is distribuited under GPL 3.0 or, at your opinion, any later version
- *  CBriscola 0.1
+ *  CBriscola 3-0
  *
- *  Created by numerunix on 22/05/22.
- *  Copyright 2022 Some rights reserved.
+ *  Created by Giulio Sorrentino on 28/01/23.
+ *  Copyright 2023 Some rights reserved.
  *
  */
 
