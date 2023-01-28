@@ -8,10 +8,10 @@
  */
 
 using System;
-namespace CBriscola
+namespace org.altervista.numerone.framework
 {
-    interface elaboratoreCarte
+    public interface ElaboratoreCarte
     {
-        UInt16 getCarta();
+        UInt16 GetCarta();
     };
 }

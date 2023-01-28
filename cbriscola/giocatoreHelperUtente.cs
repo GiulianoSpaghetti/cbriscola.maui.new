@@ -9,7 +9,7 @@
 
 using System;
 
-namespace CBriscola
+namespace org.altervista.numerone.framework
 {
 	class giocatoreHelperUtente : giocatoreHelper
 	{
@@ -17,20 +17,20 @@ namespace CBriscola
 		{
 			;
 		}
-		public UInt16 gioca(UInt16 i, Carta[] v, UInt16 numeroCarte)
+		public UInt16 Gioca(UInt16 i, Carta[] v, UInt16 numeroCarte)
 		{
 			if (i < numeroCarte)
 				return i;
 			else
 				throw new ArgumentException("");
 		}
-		public UInt16 gioca(UInt16 i, Carta[] v, UInt16 numeroCarte, Carta c)
+		public UInt16 Gioca(UInt16 i, Carta[] v, UInt16 numeroCarte, Carta c)
 		{
-			return gioca(i, v, numeroCarte);
+			return Gioca(i, v, numeroCarte);
 		}
-		public void aggiornaPunteggio(ref UInt16 punteggioAttuale, Carta c, Carta c1)
+		public void AggiornaPunteggio(ref UInt16 punteggioAttuale, Carta c, Carta c1)
 		{
-			punteggioAttuale = (UInt16)(punteggioAttuale + c.getPunteggio() + c1.getPunteggio());
+			punteggioAttuale = (UInt16)(punteggioAttuale + c.GetPunteggio() + c1.GetPunteggio());
 		}
 
     };
