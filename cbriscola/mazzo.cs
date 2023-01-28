@@ -10,7 +10,7 @@
 using System;
 namespace CBriscola
 {
-    class Mazzo
+    public class Mazzo
     {
         private UInt16[] carte;
         private UInt16 numeroCarte;

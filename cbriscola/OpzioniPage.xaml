@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="cbriscola.OpzioniPage"
+             Title="OpzioniPage">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Label x:Name="opNomeUtente" Grid.Row="0" Grid.Column="0" Text="Username"/>
+        <Entry x:Name="txtNomeUtente" Grid.Row="0" Grid.Column="1" Text="CPU Name" />
+        <Label x:Name="opNomeCpu" Grid.Row="1" Grid.Column="0" />
+        <Entry x:Name="txtCpu" Grid.Row="1" Grid.Column="1" />
+        <Entry x:Name="txtSecondi" Grid.Row="2" Grid.Column="1" />
+        <Label x:Name="Secondi" Grid.Row="2" Grid.Column="0" Text="Seconds during which to show the plays" />
+        <CheckBox x:Name="cbCartaBriscola" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" IsChecked="True" />
+        <Label x:Name="lbCartaBriscola" Grid.Row="3" Grid.Column="1" Text="The Card designating the trump suit can score points" />
+        <CheckBox x:Name="cbAvvisaTallone" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" IsChecked="True" />
+        <Label x:Name="lbAvvisaTallone" Grid.Row="4" Grid.Column="1" Text="Alerts when the deck ends" />
+        <Button Text="OK" Clicked="OnOk_Click"  Grid.Row="5" Grid.Column="1"/>
+    </Grid>
+</ContentPage>

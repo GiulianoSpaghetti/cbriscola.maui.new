@@ -3,9 +3,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="cbriscola.MainPage"
              Background="Green">
+    <ContentPage.MenuBarItems>
+        <MenuBarItem Text="File">
+            <MenuFlyoutItem Text="New Game" Clicked="OnNuovaPartita_Click" />
+            <MenuFlyoutItem Text="Options" Clicked="OnOpzioni_Click" />
+            <MenuFlyoutItem Text="Exit" Clicked="OnCancelFp_Click" />
+        </MenuBarItem>
+        <MenuBarItem Text="?">
+            <MenuFlyoutItem Text="Informations" Clicked="OnInfo_Click" />
+        </MenuBarItem>
+    </ContentPage.MenuBarItems>
 
-    <Grid>
-        <Grid x:Name="Applicazione">
+       <Grid x:Name="Applicazione">
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition />
@@ -71,71 +80,6 @@
             <Label x:Name="PuntiCpu" Text="CPU points" Grid.Row="1" Grid.Column="4" />
             <Label x:Name="NelMazzoRimangono" Text="In the Deck remains" Grid.Row="2" Grid.Column="4" />
             <Label x:Name="CartaBriscola" Text="The trump suit is" Grid.Row="3" Grid.Column="4" />
-            <Button x:Name="AppInformazioni" Text="Informations" Grid.Row="5" Grid.Column="0" Clicked="OnInfo_Click" />
-            <Button x:Name="AppOpzioni" Text="Options" Grid.Row="5" Grid.Column="1" Clicked="OnOpzioni_Click" />
             <Label x:Name="Informazioni" Grid.Row="5" Grid.Column="2" />
         </Grid>
-        <Grid x:Name="Info" IsVisible="false">
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-            </Grid.RowDefinitions>
-            <Label Text="The Trump Suit Game version 1.1.2" Grid.Row="0" />
-            <Label Text="Two player trump game simulator without multiplayer"  Grid.Row="1"/>
-            <Label Text="Author: Giulio Sorrentino" Grid.Row="2" />
-            <Label Text="License: GPLv3 or, in your humble opinion, any later version" Grid.Row="3"/>
-            <Label Text="Card images are the property of Modiano" Grid.Row="4" />
-            <Button Text="More Informations" Clicked="OnSito_Click" Grid.Row="5" />
-            <Button x:Name="InfoApplicazione" Text="Application" Clicked="OnApp_Click" Grid.Row="6"/>
-        </Grid>
-        <Grid x:Name="GOpzioni" IsVisible="false">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-            </Grid.RowDefinitions>
-            <Label x:Name="opNomeUtente" Grid.Row="0" Grid.Column="0"/>
-            <Entry x:Name="txtNomeUtente" Grid.Row="0" Grid.Column="1" />
-            <Label x:Name="opNomeCpu" Grid.Row="1" Grid.Column="0" />
-            <Entry x:Name="txtCpu" Grid.Row="1" Grid.Column="1" />
-            <Entry x:Name="txtSecondi" Grid.Row="2" Grid.Column="1" />
-            <Label x:Name="Secondi" Grid.Row="2" Grid.Column="0" />
-            <CheckBox x:Name="cbCartaBriscola" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" IsChecked="True" />
-            <Label x:Name="lbCartaBriscola" Grid.Row="3" Grid.Column="1" />
-            <CheckBox x:Name="cbAvvisaTallone" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" IsChecked="True" />
-            <Label x:Name="lbAvvisaTallone" Grid.Row="4" Grid.Column="1" />
-            <Button Text="OK" Clicked="OnOk_Click"  Grid.Row="5" Grid.Column="1"/>
-            <Button x:Name="OpzioniApplicazione" Text="Application" Clicked="OnApp_Click" Grid.Row="6" Grid.Column="0"/>
-            <Button x:Name="OpzioniInformazioni" Text="Informations" Grid.Row="6" Grid.Column="1" Clicked="OnInfo_Click" />
-        </Grid>
-        <Grid x:Name="FinePartita" IsVisible="false">
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <Label x:Name="fpRisultrato" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" />
-            <Button Text="Ok" Clicked="OnOkFp_Click" Grid.Row="1" Grid.Column="0"/>
-            <Button Text="Cancel" Clicked="OnCancelFp_Click" Grid.Row="1" Grid.Column="1" />
-            <Button Text="Share" Clicked="OnFPShare_Click" Grid.Row="1" Grid.Column="2" />
-        </Grid>
-    </Grid>
-
 </ContentPage>

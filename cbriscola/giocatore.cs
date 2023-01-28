@@ -10,7 +10,7 @@
 using System;
 
 namespace CBriscola {
-	class Giocatore
+	public class Giocatore
 	{
 		private string nome;
 		private Carta[] mano;

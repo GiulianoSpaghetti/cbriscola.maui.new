@@ -11,7 +11,7 @@ using System;
 
 namespace CBriscola
 {
-    class GiocatoreHelperCpu : GiocatoreHelper
+    public class GiocatoreHelperCpu : GiocatoreHelper
     {
         private Carta briscola;
         private UInt16 getBriscola(Carta[] mano)

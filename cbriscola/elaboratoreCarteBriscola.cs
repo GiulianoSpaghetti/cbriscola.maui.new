@@ -10,7 +10,7 @@
 using System;
 namespace CBriscola
 {
-	class elaboratoreCarteBriscola : elaboratoreCarte
+	public class elaboratoreCarteBriscola : elaboratoreCarte
 	{
 		private const UInt16 numeroCarte = 40;
 		private bool[] doppione;
@@ -44,7 +44,7 @@ namespace CBriscola
 						Carta = (UInt16)(Carta - valore + 1);
 					}
 					if (!briscolaDaPunti)
-						Carta = CartaHelperBriscola.getIstanza(this).getNumero(CartaHelperBriscola.getIstanza(this).getSeme(Carta), 1);
+						Carta = CartaHelperBriscola.getIstanza().getNumero(CartaHelperBriscola.getIstanza().getSeme(Carta), 1);
 					CartaBriscola = Carta;
 					inizio = false;
 				}

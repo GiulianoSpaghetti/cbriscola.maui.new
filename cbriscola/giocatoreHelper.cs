@@ -11,7 +11,7 @@ using System;
 
 namespace CBriscola
 {
-	interface GiocatoreHelper
+	public interface GiocatoreHelper
 	{
 		UInt16 gioca(UInt16 i, Carta[] v, UInt16 numeroCarte);
 		UInt16 gioca(UInt16 i, Carta[] v, UInt16 numeroCarte, Carta c);

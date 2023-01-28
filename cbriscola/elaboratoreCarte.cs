@@ -10,7 +10,7 @@
 using System;
 namespace CBriscola
 {
-    interface elaboratoreCarte
+   public interface elaboratoreCarte
     {
         UInt16 getCarta();
     };

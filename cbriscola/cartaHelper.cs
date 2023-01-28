@@ -10,7 +10,7 @@
  using System;
 namespace CBriscola
 {
-	interface CartaHelper
+	public interface CartaHelper
 	{
 		UInt16 getSeme(UInt16 Carta);
 		UInt16 getValore(UInt16 Carta);

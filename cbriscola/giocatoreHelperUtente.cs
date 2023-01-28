@@ -11,7 +11,7 @@ using System;
 
 namespace CBriscola
 {
-	class GiocatoreHelperUtente : GiocatoreHelper
+	public class GiocatoreHelperUtente : GiocatoreHelper
 	{
 		public GiocatoreHelperUtente()
 		{

@@ -13,7 +13,7 @@ using System;
 
 namespace CBriscola
 {
-    class Carta
+   public class Carta
     {
         private UInt16 seme,
                    valore,

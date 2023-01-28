@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="cbriscola.InfoPage"
+             Title="Informations">
+    <VerticalStackLayout>
+            <Label Text="The Trump Suit Game version 1.1.2" Grid.Row="0" />
+            <Label Text="Two player trump game simulator without multiplayer"  Grid.Row="1"/>
+            <Label Text="Author: Giulio Sorrentino" Grid.Row="2" />
+            <Label Text="License: GPLv3 or, in your humble opinion, any later version" Grid.Row="3"/>
+            <Label Text="Card images are the property of Modiano" Grid.Row="4" />
+            <Button Text="More Informations" Clicked="OnSito_Click" Grid.Row="5" />
+    </VerticalStackLayout>
+</ContentPage>

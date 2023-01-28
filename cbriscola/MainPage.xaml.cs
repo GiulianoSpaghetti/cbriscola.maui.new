@@ -24,7 +24,7 @@ public partial class MainPage : ContentPage
 
         e = new elaboratoreCarteBriscola(briscolaDaPunti);
         m = new Mazzo(e);
-        Carta.inizializza(40, CartaHelperBriscola.getIstanza(e));
+        Carta.inizializza(40, CartaHelperBriscola.getIstanza());
         g = new Giocatore(new GiocatoreHelperUtente(), Preferences.Get("nomeUtente", "Giulio"), 3);
         cpu = new Giocatore(new GiocatoreHelperCpu(elaboratoreCarteBriscola.getCartaBriscola()), Preferences.Get("nomeCpu", "Cpu"), 3);
         primo = g;
@@ -48,16 +48,6 @@ public partial class MainPage : ContentPage
         PuntiUtente.Text = $"{g.getNome()} points: {g.getPunteggio()}";
         NelMazzoRimangono.Text = $"There are {m.getNumeroCarte()} cards left in the Deck";
         CartaBriscola.Text = $"The trump suit is: {briscola.getSemeStr()}";
-        lbCartaBriscola.Text = "The Card designating the trump suit can score points";
-        lbAvvisaTallone.Text = "Alerts when the deck ends";
-        opNomeUtente.Text = "Username";
-        opNomeCpu.Text = "CPU name";
-        Secondi.Text = "Seconds during which to show the plays";
-        InfoApplicazione.Text = "Application";
-        OpzioniApplicazione.Text = "Application";
-        OpzioniInformazioni.Text = "Informations";
-        AppInformazioni.Text = "Informations";
-        AppOpzioni.Text = "Options";
         visualizzaImmagine(Carta.getCarta(elaboratoreCarteBriscola.getCartaBriscola()).getID(), 4, 4, false);
 
         t = Dispatcher.CreateTimer();
@@ -112,19 +102,8 @@ public partial class MainPage : ContentPage
             }
             else
             {
-                if (g.getPunteggio() == cpu.getPunteggio())
-                    s = "The game is drawn";
-                else
-                {
-                    if (g.getPunteggio() > cpu.getPunteggio())
-                        s = "You won";
-                    else
-                        s = "Yo losy";
-                    s = $"{s} by {Math.Abs(g.getPunteggio() - cpu.getPunteggio())} points";
-                }
-                fpRisultrato.Text = $"The match is over. {s}. Do you want to start a new game?";
-                Applicazione.IsVisible = false;
-                FinePartita.IsVisible = true;
+                Navigation.PushAsync(new FinePartitaPage(g, cpu));
+                nuovaPartita();
             }
             t.Stop();
         };
@@ -159,30 +138,24 @@ public partial class MainPage : ContentPage
 
     private void OnInfo_Click(object sender, EventArgs e)
     {
-        Applicazione.IsVisible = false;
-        GOpzioni.IsVisible = false;
-        Info.IsVisible = true;
+        Navigation.PushAsync(new InfoPage());
     }
 
-    private void OnApp_Click(object sender, EventArgs e)
-    {
-        GOpzioni.IsVisible = false;
-        Info.IsVisible = false;
-        Applicazione.IsVisible = true;
-    }
+
     private void OnOpzioni_Click(object sender, EventArgs e)
     {
-        GOpzioni.IsVisible = true;
-        Info.IsVisible = false;
-        Applicazione.IsVisible = false;
-        txtNomeUtente.Text = g.getNome();
-        txtCpu.Text = cpu.getNome();
-        txtSecondi.Text = secondi.ToString();
-        cbCartaBriscola.IsChecked = briscolaDaPunti;
-        cbAvvisaTallone.IsChecked = avvisaTalloneFinito;
+        Navigation.PushAsync(new OpzioniPage());
+        g.setNome(Preferences.Get("nomeUtente", "Giulio"));
+        cpu.setNome(Preferences.Get("nomeCpu", "Cpu"));
+        avvisaTalloneFinito = Preferences.Get("avvisaTalloneFinito", true);
+        briscolaDaPunti = Preferences.Get("briscolaDaPunti", false);
+        secondi = (UInt16) Preferences.Get("secondi", 5);
+        t.Interval = TimeSpan.FromSeconds(secondi);
+        NomeUtente.Text = g.getNome();
+        NomeCpu.Text = cpu.getNome();
     }
 
-    private void OnOkFp_Click(object sender, EventArgs evt)
+    private void nuovaPartita()
     {
         e = new elaboratoreCarteBriscola(briscolaDaPunti);
         m = new Mazzo(e);
@@ -210,8 +183,11 @@ public partial class MainPage : ContentPage
         primo = g;
         secondo = cpu;
         visualizzaImmagine(Carta.getCarta(elaboratoreCarteBriscola.getCartaBriscola()).getID(), 4, 4, false);
-        FinePartita.IsVisible = false;
-        Applicazione.IsVisible = true;
+
+    }
+    private void OnNuovaPartita_Click(object sender, EventArgs evt)
+    {
+        nuovaPartita();
     }
     private void OnCancelFp_Click(object sender, EventArgs e)
     {
@@ -252,50 +228,5 @@ public partial class MainPage : ContentPage
         giocaUtente(img);
         if (secondo == cpu)
             giocaCpu();
-    }
-    public void OnOk_Click(Object source, EventArgs evt)
-    {
-        Preferences.Set("nomeUtente", txtNomeUtente.Text);
-        Preferences.Set("nomeCpu", txtCpu.Text);
-        g.setNome(txtNomeUtente.Text);
-        cpu.setNome(txtCpu.Text);
-        if (cbCartaBriscola.IsChecked == false)
-            briscolaDaPunti = false;
-        else
-            briscolaDaPunti = true;
-        Preferences.Set("briscolaDaPunti", briscolaDaPunti);
-        if (cbAvvisaTallone.IsChecked == false)
-            avvisaTalloneFinito = false;
-        else
-            avvisaTalloneFinito = true;
-        Preferences.Set("avvisaTalloneFinito", avvisaTalloneFinito);
-
-        try
-        {
-            secondi = UInt16.Parse(txtSecondi.Text);
-        }
-        catch (FormatException ex)
-        {
-            txtSecondi.Text = "Invalid rvalue";
-            return;
-        }
-        Preferences.Set("secondi", secondi);
-
-        t.Interval = TimeSpan.FromSeconds(secondi);
-        NomeUtente.Text = g.getNome();
-        NomeCpu.Text = cpu.getNome();
-        GOpzioni.IsVisible = false;
-        Applicazione.IsVisible = true;
-    }
-
-    private async void OnFPShare_Click(object sender, EventArgs e)
-    {
-        await Launcher.Default.OpenAsync(new Uri($"https://twitter.com/intent/tweet?text=With%20the%20Trump%20Suit%20Game%20the%20game%20{g.getNome()}%versus%20{cpu.getNome()}%20is%20finished%20{g.getPunteggio()}%20at%20{cpu.getPunteggio()}&url=https%3A%2F%2Fgithub.com%2Fnumerunix%2Fcbriscola.maui"));
-    }
-
-
-    private async void OnSito_Click(object sender, EventArgs e)
-    {
-        await Launcher.Default.OpenAsync(new Uri("https://github.com/numerunix/cbriscola.maui"));
     }
 }

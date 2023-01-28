@@ -10,14 +10,12 @@
 using System;
 
 namespace CBriscola {
-	class CartaHelperBriscola : CartaHelper {
+	public class CartaHelperBriscola : CartaHelper {
 		private UInt16 CartaBriscola;
 		public CartaHelperBriscola(UInt16 briscola) { CartaBriscola = briscola; }
 		private static CartaHelperBriscola istanza;
-		public static CartaHelperBriscola getIstanza(elaboratoreCarteBriscola e) {
+		public static CartaHelperBriscola getIstanza() {
 			if (istanza == null) {
-				if (e == null)
-					throw new ArgumentNullException("Chiamata a CartaHelperBriscola::getIstanza con istanza==NULL e e==NULL");
 				istanza = new CartaHelperBriscola(elaboratoreCarteBriscola.getCartaBriscola());
 			}
 			return istanza;
