@@ -13,8 +13,8 @@
             <ColumnDefinition />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <Label x:Name="Risultrato" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" />
+        <Label x:Name="Risultato" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" />
         <Button Text="Cancel" Clicked="OnCancel_Click" Grid.Row="1" Grid.Column="1" />
-        <Button Text="Share" Clicked="OnShare_Click" Grid.Row="1" Grid.Column="2" />
+        <Button x:Name="Condividi" Text="Share" Clicked="OnShare_Click" Grid.Row="1" Grid.Column="2" />
     </Grid>
 </ContentPage>

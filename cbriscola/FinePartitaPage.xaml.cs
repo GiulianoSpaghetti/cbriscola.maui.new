@@ -20,12 +20,13 @@ public partial class FinePartitaPage : ContentPage
                 s = "Yo losy";
             s = $"{s} by {Math.Abs(g.getPunteggio() - cpu.getPunteggio())} points";
         }
-        Risultrato.Text = $"The match is over. {s}. Do you want to start a new game?";
+        Risultato.Text = $"The match is over. {s}. Do you want to start a new game?";
 
     }
     private async void OnShare_Click(object sender, EventArgs e)
     {
         await Launcher.Default.OpenAsync(new Uri($"https://twitter.com/intent/tweet?text=With%20the%20Trump%20Suit%20Game%20the%20game%20{g.getNome()}%20versus%20{cpu.getNome()}%20is%20finished%20{g.getPunteggio()}%20at%20{cpu.getPunteggio()}&url=https%3A%2F%2Fgithub.com%2Fnumerunix%2Fcbriscola.maui"));
+        Condividi.IsEnabled = false;
     }
 
     private void OnCancel_Click(object sender, EventArgs e)
