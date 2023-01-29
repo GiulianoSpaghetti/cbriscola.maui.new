@@ -85,7 +85,7 @@
                 <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <Label Text="The Trump Suit Game version 1.1.2" Grid.Row="0" />
+            <Label Text="The Trump Suit Game version 1.1.3" Grid.Row="0" />
             <Label Text="Two player trump game simulator without multiplayer"  Grid.Row="1"/>
             <Label Text="Author: Giulio Sorrentino" Grid.Row="2" />
             <Label Text="License: GPLv3 or, in your humble opinion, any later version" Grid.Row="3"/>
@@ -108,15 +108,15 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
             <Label x:Name="opNomeUtente" Grid.Row="0" Grid.Column="0"/>
-            <Entry x:Name="txtNomeUtente" Grid.Row="0" Grid.Column="1" />
-            <Label x:Name="opNomeCpu" Grid.Row="1" Grid.Column="0" />
+            <Entry x:Name="txtNomeUtente" Grid.Row="0" Grid.Column="1" Text="Username"/>
+            <Label x:Name="opNomeCpu" Grid.Row="1" Grid.Column="0" Text="CPU Name"/>
             <Entry x:Name="txtCpu" Grid.Row="1" Grid.Column="1" />
             <Entry x:Name="txtSecondi" Grid.Row="2" Grid.Column="1" />
-            <Label x:Name="Secondi" Grid.Row="2" Grid.Column="0" />
+            <Label x:Name="Secondi" Grid.Row="2" Grid.Column="0" Text="Seconds during which to show the plays"/>
             <CheckBox x:Name="cbCartaBriscola" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" IsChecked="True" />
-            <Label x:Name="lbCartaBriscola" Grid.Row="3" Grid.Column="1" />
+            <Label x:Name="lbCartaBriscola" Grid.Row="3" Grid.Column="1" Text="The Card designating the trump suit can score points"/>
             <CheckBox x:Name="cbAvvisaTallone" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" IsChecked="True" />
-            <Label x:Name="lbAvvisaTallone" Grid.Row="4" Grid.Column="1" />
+            <Label x:Name="lbAvvisaTallone" Grid.Row="4" Grid.Column="1" Text="Alerts when the deck ends"/>
             <Button Text="OK" Clicked="OnOk_Click"  Grid.Row="5" Grid.Column="1"/>
             <Button x:Name="OpzioniApplicazione" Text="Application" Clicked="OnApp_Click" Grid.Row="6" Grid.Column="0"/>
             <Button x:Name="OpzioniInformazioni" Text="Informations" Grid.Row="6" Grid.Column="1" Clicked="OnInfo_Click" />
@@ -132,9 +132,9 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Label x:Name="fpRisultrato" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" />
-            <Button Text="Ok" Clicked="OnOkFp_Click" Grid.Row="1" Grid.Column="0"/>
-            <Button Text="Cancel" Clicked="OnCancelFp_Click" Grid.Row="1" Grid.Column="1" />
-            <Button Text="Share" Clicked="OnFPShare_Click" Grid.Row="1" Grid.Column="2" />
+            <Button Text="Yes" Clicked="OnOkFp_Click" Grid.Row="1" Grid.Column="0"/>
+            <Button Text="No" Clicked="OnCancelFp_Click" Grid.Row="1" Grid.Column="1" />
+            <Button x:Name="btnShare" Text="Share" Clicked="OnFPShare_Click" Grid.Row="1" Grid.Column="2" />
         </Grid>
     </Grid>
 

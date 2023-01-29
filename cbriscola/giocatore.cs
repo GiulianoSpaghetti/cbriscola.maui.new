@@ -1,16 +1,17 @@
 /*
- *  This code is distribuited under GPL 3.0 or, at your opinion, any later version
- *  CBriscola 0.1
+  *  This code is distribuited under GPL 3.0 or, at your opinion, any later version
+ *  CBriscola 1.1.3
  *
- *  Created by numerunix on 22/05/22.
- *  Copyright 2022 Some rights reserved.
+ *  Created by Giulio Sorrentino (numerone) on 29/01/23.
+ *  Copyright 2023 Some rights reserved.
  *
  */
 
 using System;
 
-namespace CBriscola {
-	class Giocatore
+namespace org.altervista.numerone.framework
+{
+    class Giocatore
 	{
 		private string nome;
 		private Carta[] mano;
@@ -19,7 +20,7 @@ namespace CBriscola {
 		private UInt16 iCarta;
 		private UInt16 iCartaGiocata;
 		private UInt16 punteggio;
-		private GiocatoreHelper helper;
+		private readonly GiocatoreHelper helper;
 		public enum Carta_GIOCATA { NESSUNA_Carta_GIOCATA = UInt16.MaxValue };
 		public Giocatore(GiocatoreHelper h, string n, UInt16 carte, bool ordina = true)
 		{
@@ -32,11 +33,11 @@ namespace CBriscola {
 			mano = new Carta[3];
 			iCarta = 0;
 		}
-		public string getNome() { return nome; }
-		public void setNome(string n) { nome = n; }
-		public bool getFlagOrdina() { return ordinaMano; }
-		public void setFlagOrdina(bool ordina) { ordinaMano = ordina; }
-		public void addCarta(Mazzo m)
+		public string GetNome() { return nome; }
+		public void SetNome(string n) { nome = n; }
+		public bool GetFlagOrdina() { return ordinaMano; }
+		public void SetFlagOrdina(bool ordina) { ordinaMano = ordina; }
+		public void AddCarta(Mazzo m)
 		{
 			UInt16 i = 0;
 			Carta temp;
@@ -48,7 +49,7 @@ namespace CBriscola {
 					mano[i] = mano[i + 1];
 				mano[i] = null;
 				iCartaGiocata = (UInt16)Carta_GIOCATA.NESSUNA_Carta_GIOCATA;
-				mano[iCarta - 1] = sostituisciCartaGiocata(m);
+				mano[iCarta - 1] = SostituisciCartaGiocata(m);
 				for (i = (UInt16)(iCarta - 2); i < UInt16.MaxValue && iCarta > 1 && mano[i].CompareTo(mano[i + 1]) < 0; i--)
 				{
 					temp = mano[i];
@@ -57,28 +58,28 @@ namespace CBriscola {
 				}
 				return;
 			}
-			ordina(m);
+			Ordina(m);
 
 
 		}
 
-		private void ordina(Mazzo m)
+		private void Ordina(Mazzo m)
 		{
 			UInt16 i = 0;
 			UInt16 j = 0;
-			Carta c = sostituisciCartaGiocata(m);
+			Carta c = SostituisciCartaGiocata(m);
 			for (i = 0; i < iCarta && mano[i] != null && c.CompareTo(mano[i]) < 0; i++) ;
 			for (j = (UInt16)(numeroCarte - 1); j > i; j--)
 				mano[j] = mano[j - 1];
 			mano[i] = c;
 			iCarta++;
 		}
-		private Carta sostituisciCartaGiocata(Mazzo m)
+		private Carta SostituisciCartaGiocata(Mazzo m)
 		{
 			Carta c;
 			try
 			{
-				c = Carta.getCarta(m.getCarta());
+				c = Carta.GetCarta(m.GetCarta());
 			}
 			catch (IndexOutOfRangeException e)
 			{
@@ -90,36 +91,36 @@ namespace CBriscola {
 			}
 			return c;
 		}
-		public Carta getCartaGiocata()
+		public Carta GetCartaGiocata()
 		{
 			return mano[iCartaGiocata];
 		}
-		public UInt16 getPunteggio() { return punteggio; }
-		public void gioca(UInt16 i)
+		public UInt16 GetPunteggio() { return punteggio; }
+		public void Gioca(UInt16 i)
 		{
-			iCartaGiocata = helper.gioca(i, mano, numeroCarte);
+			iCartaGiocata = helper.Gioca(i, mano, numeroCarte);
 		}
-		public void gioca(UInt16 i, Giocatore g1)
+		public void Gioca(UInt16 i, Giocatore g1)
 		{
-			iCartaGiocata = helper.gioca(i, mano, numeroCarte, g1.getCartaGiocata());
+			iCartaGiocata = helper.Gioca(i, mano, numeroCarte, g1.GetCartaGiocata());
 		}
-		public void aggiornaPunteggio(Giocatore g)
+		public void AggiornaPunteggio(Giocatore g)
 		{
-			helper.aggiornaPunteggio(ref punteggio, getCartaGiocata(), g.getCartaGiocata());
+			helper.AggiornaPunteggio(ref punteggio, GetCartaGiocata(), g.GetCartaGiocata());
 		}
 
-		public String getID(UInt16 quale)
+		public String GetID(UInt16 quale)
 		{
-			String s = mano[quale].getID();
+			String s = mano[quale].GetID();
 			return s;
 		}
 
-		public UInt16 getICartaGiocata()
+		public UInt16 GetICartaGiocata()
 		{
 			return iCartaGiocata;
 		}
 
-		public UInt16 getNumeroCarte()
+		public UInt16 GetNumeroCarte()
 		{
 			return numeroCarte;
 		}
