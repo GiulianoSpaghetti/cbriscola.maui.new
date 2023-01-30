@@ -25,3 +25,4 @@ https://learn.microsoft.com/en-us/dotnet/communitytoolkit/maui/alerts/toast?tabs
 https://stackoverflow.com/questions/13592150/load-image-from-resources
 https://learn.microsoft.com/en-us/dotnet/maui/user-interface/controls/image?view=net-maui-7.0#load-a-local-image
 https://learn.microsoft.com/en-us/dotnet/maui/user-interface/pages/navigationpage?view=net-maui-7.0
+https://learn.microsoft.com/en-us/dotnet/maui/user-interface/controls/entry?view=net-maui-7.0
