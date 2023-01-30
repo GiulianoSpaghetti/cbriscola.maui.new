@@ -270,6 +270,11 @@ public partial class MainPage : ContentPage
             txtSecondi.Text = "Invalid rvalue";
             return;
         }
+        if (secondi>10)
+        {
+            txtSecondi.Text = "rvalue too high";
+            return;
+        }
         Preferences.Set("secondi", secondi);
 
         t.Interval = TimeSpan.FromSeconds(secondi);
