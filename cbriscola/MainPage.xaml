@@ -85,7 +85,7 @@
                 <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <Label Text="CBriscola versione 1.1.2" Grid.Row="0" />
+            <Label Text="CBriscola versione 1.1.4" Grid.Row="0" />
             <Label Text="Simulatore del gioco della briscola a due giocatori senza multiplayer"  Grid.Row="1"/>
             <Label Text="Autore: Giulio Sorrentino" Grid.Row="2" />
             <Label Text="Licenza: GPL v3 o, secondo la tua opionione, qualsiasi versione successiva" Grid.Row="3"/>
@@ -107,16 +107,16 @@
                 <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <Label x:Name="opNomeUtente" Grid.Row="0" Grid.Column="0"/>
+            <Label x:Name="opNomeUtente" Grid.Row="0" Grid.Column="0" Text="Nome Utente"/>
             <Entry x:Name="txtNomeUtente" Grid.Row="0" Grid.Column="1" />
-            <Label x:Name="opNomeCpu" Grid.Row="1" Grid.Column="0" />
+            <Label x:Name="opNomeCpu" Grid.Row="1" Grid.Column="0" Text="Nome Cpu"/>
             <Entry x:Name="txtCpu" Grid.Row="1" Grid.Column="1" />
             <Entry x:Name="txtSecondi" Grid.Row="2" Grid.Column="1" />
-            <Label x:Name="Secondi" Grid.Row="2" Grid.Column="0" />
+            <Label x:Name="Secondi" Grid.Row="2" Grid.Column="0" Text="Numero di secondi in cui mostrare le giocate"/>
             <CheckBox x:Name="cbCartaBriscola" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" IsChecked="True" />
-            <Label x:Name="lbCartaBriscola" Grid.Row="3" Grid.Column="1" />
+            <Label x:Name="lbCartaBriscola" Grid.Row="3" Grid.Column="1" Text="La Carta che designa il seme di briscola può dar punti"/>
             <CheckBox x:Name="cbAvvisaTallone" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" IsChecked="True" />
-            <Label x:Name="lbAvvisaTallone" Grid.Row="4" Grid.Column="1" />
+            <Label x:Name="lbAvvisaTallone" Grid.Row="4" Grid.Column="1" Text="Avvisa quando il tallone finisce"/>
             <Button Text="OK" Clicked="OnOk_Click"  Grid.Row="5" Grid.Column="1"/>
             <Button x:Name="OpzioniApplicazione" Text="Applicazione" Clicked="OnApp_Click" Grid.Row="6" Grid.Column="0"/>
             <Button x:Name="OpzioniInformazioni" Text="Informazioni" Grid.Row="6" Grid.Column="1" Clicked="OnInfo_Click" />
@@ -132,9 +132,9 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Label x:Name="fpRisultrato" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" />
-            <Button Text="Ok" Clicked="OnOkFp_Click" Grid.Row="1" Grid.Column="0"/>
-            <Button Text="Cancel" Clicked="OnCancelFp_Click" Grid.Row="1" Grid.Column="1" />
-            <Button Text="Share" Clicked="OnFPShare_Click" Grid.Row="1" Grid.Column="2" />
+            <Button Text="Si" Clicked="OnOkFp_Click" Grid.Row="1" Grid.Column="0"/>
+            <Button Text="No" Clicked="OnCancelFp_Click" Grid.Row="1" Grid.Column="1" />
+            <Button x:Name="btnCondividi" Text="Condividi" Clicked="OnFPShare_Click" Grid.Row="1" Grid.Column="2" />
         </Grid>
     </Grid>
 
