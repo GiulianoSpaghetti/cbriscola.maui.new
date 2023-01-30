@@ -102,20 +102,8 @@ public partial class MainPage : ContentPage
             }
             else
             {
-                if (g.GetPunteggio() == cpu.GetPunteggio())
-                    s = "The game is drawn";
-                else
-                {
-                    if (g.GetPunteggio() > cpu.GetPunteggio())
-                        s = "You won";
-                    else
-                        s = "Yo losy";
-                    s = $"{s} by {Math.Abs(g.GetPunteggio() - cpu.GetPunteggio())} points";
-                }
-                fpRisultrato.Text = $"The match is over. {s}. Do you want to start a new game?";
-                Applicazione.IsVisible = false;
-                btnShare.IsEnabled = true;
-                FinePartita.IsVisible = true;
+                Navigation.PushAsync(new GreetingsPage(g, cpu));
+                NuovaPartita();
             }
             t.Stop();
         };
@@ -150,21 +138,17 @@ public partial class MainPage : ContentPage
 
     private void OnInfo_Click(object sender, EventArgs e)
     {
-        Applicazione.IsVisible = false;
-        GOpzioni.IsVisible = false;
-        Info.IsVisible = true;
+        Navigation.PushAsync(new InfoPage());
     }
 
     private void OnApp_Click(object sender, EventArgs e)
     {
         GOpzioni.IsVisible = false;
-        Info.IsVisible = false;
         Applicazione.IsVisible = true;
     }
     private void OnOpzioni_Click(object sender, EventArgs e)
     {
         GOpzioni.IsVisible = true;
-        Info.IsVisible = false;
         Applicazione.IsVisible = false;
         txtNomeUtente.Text = g.GetNome();
         txtCpu.Text = cpu.GetNome();
@@ -173,7 +157,7 @@ public partial class MainPage : ContentPage
         cbAvvisaTallone.IsChecked = avvisaTalloneFinito;
     }
 
-    private void OnOkFp_Click(object sender, EventArgs evt)
+    private void  NuovaPartita()
     {
         e = new ElaboratoreCarteBriscola(briscolaDaPunti);
         m = new Mazzo(e);
@@ -201,14 +185,8 @@ public partial class MainPage : ContentPage
         primo = g;
         secondo = cpu;
         VisualizzaImmagine(Carta.GetCarta(ElaboratoreCarteBriscola.GetCartaBriscola()).GetID(), 4, 4, false);
-        FinePartita.IsVisible = false;
         Applicazione.IsVisible = true;
     }
-    private void OnCancelFp_Click(object sender, EventArgs e)
-    {
-        Application.Current.Quit();
-    }
-
     private void GiocaCpu()
     {
         UInt16 quale = 0;
@@ -284,15 +262,4 @@ public partial class MainPage : ContentPage
         Applicazione.IsVisible = true;
     }
 
-    private async void OnFPShare_Click(object sender, EventArgs e)
-    {
-        await Launcher.Default.OpenAsync(new Uri($"https://twitter.com/intent/tweet?text=With%20the%20Trump%20Suit%20Game%20the%20game%20{g.GetNome()}%20versus%20{cpu.GetNome()}%20is%20finished%20{g.GetPunteggio()}%20at%20{cpu.GetPunteggio()}&url=https%3A%2F%2Fgithub.com%2Fnumerunix%2Fcbriscola.maui"));
-        btnShare.IsEnabled= false;
-    }
-
-
-    private async void OnSito_Click(object sender, EventArgs e)
-    {
-        await Launcher.Default.OpenAsync(new Uri("https://github.com/numerunix/cbriscola.maui"));
-    }
 }

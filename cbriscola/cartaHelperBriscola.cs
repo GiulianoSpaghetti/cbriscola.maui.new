@@ -11,7 +11,7 @@ using System;
 
 namespace org.altervista.numerone.framework
 {
-    class CartaHelperBriscola : CartaHelper {
+    public class CartaHelperBriscola : CartaHelper {
 		private readonly UInt16 CartaBriscola;
 		public CartaHelperBriscola(UInt16 briscola) { CartaBriscola = briscola; }
 		private static CartaHelperBriscola istanza;

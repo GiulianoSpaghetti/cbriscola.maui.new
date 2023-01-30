@@ -10,7 +10,7 @@
 using System;
 namespace org.altervista.numerone.framework
 {
-    class Mazzo
+    public class Mazzo
     {
         private UInt16[] carte;
         private UInt16 numeroCarte;

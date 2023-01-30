@@ -11,7 +11,7 @@ using System;
 namespace org.altervista.numerone.framework
 
 {
-    class ElaboratoreCarteBriscola : ElaboratoreCarte
+    public class ElaboratoreCarteBriscola : ElaboratoreCarte
 	{
 		private const UInt16 numeroCarte = 40;
 		private bool[] doppione;

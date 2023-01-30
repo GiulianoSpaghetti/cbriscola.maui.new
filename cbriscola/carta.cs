@@ -13,7 +13,7 @@ using System;
 
 namespace org.altervista.numerone.framework
 {
-    class Carta
+    public class Carta
     {
         private readonly UInt16 seme,
                    valore,

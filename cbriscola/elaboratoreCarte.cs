@@ -10,7 +10,7 @@
 using System;
 namespace org.altervista.numerone.framework
 {
-    interface ElaboratoreCarte
+    public interface ElaboratoreCarte
     {
         UInt16 GetCarta();
     };
