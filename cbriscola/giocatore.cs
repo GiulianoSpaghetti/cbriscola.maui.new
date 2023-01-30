@@ -11,7 +11,7 @@ using System;
 
 namespace org.altervista.numerone.framework
 {
-    class Giocatore
+    public class Giocatore
 	{
 		private string nome;
 		private Carta[] mano;

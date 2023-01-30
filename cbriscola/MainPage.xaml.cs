@@ -102,20 +102,8 @@ public partial class MainPage : ContentPage
             }
             else
             {
-                if (g.GetPunteggio() == cpu.GetPunteggio())
-                    s = "La partita è patta";
-                else
-                {
-                    if (g.GetPunteggio() > cpu.GetPunteggio())
-                        s = "Hai vinto";
-                    else
-                        s = "Hai perso";
-                    s = $"{s} per {Math.Abs(g.GetPunteggio() - cpu.GetPunteggio())}  punti";
-                }
-                fpRisultrato.Text = $"La partita è finita. {s}. Vuoi effettuare una nuova partita?";
-                btnCondividi.IsEnabled = true;
-                Applicazione.IsVisible = false;
-                FinePartita.IsVisible = true;
+                Navigation.PushAsync(new GreetingsPage(g, cpu));
+                NuovaPartita();
             }
             t.Stop();
         };
@@ -150,21 +138,17 @@ public partial class MainPage : ContentPage
 
     private void OnInfo_Click(object sender, EventArgs e)
     {
-        Applicazione.IsVisible = false;
-        GOpzioni.IsVisible = false;
-        Info.IsVisible = true;
+        Navigation.PushAsync(new InfoPage());
     }
 
     private void OnApp_Click(object sender, EventArgs e)
     {
         GOpzioni.IsVisible = false;
-        Info.IsVisible = false;
         Applicazione.IsVisible = true;
     }
     private void OnOpzioni_Click(object sender, EventArgs e)
     {
         GOpzioni.IsVisible = true;
-        Info.IsVisible = false;
         Applicazione.IsVisible = false;
         txtNomeUtente.Text = g.GetNome();
         txtCpu.Text = cpu.GetNome();
@@ -173,7 +157,7 @@ public partial class MainPage : ContentPage
         cbAvvisaTallone.IsChecked = avvisaTalloneFinito;
     }
 
-    private void OnOkFp_Click(object sender, EventArgs evt)
+    private void NuovaPartita()
     {
         e = new ElaboratoreCarteBriscola(briscolaDaPunti);
         m = new Mazzo(e);
@@ -201,12 +185,7 @@ public partial class MainPage : ContentPage
         primo = g;
         secondo = cpu;
         VisualizzaImmagine(Carta.GetCarta(ElaboratoreCarteBriscola.GetCartaBriscola()).GetID(), 4, 4, false);
-        FinePartita.IsVisible = false;
         Applicazione.IsVisible = true;
-    }
-    private void OnCancelFp_Click(object sender, EventArgs e)
-    {
-        Application.Current.Quit();
     }
 
     private void GiocaCpu()
@@ -270,7 +249,7 @@ public partial class MainPage : ContentPage
             txtSecondi.Text = "Valore non valido";
             return;
         }
-        if (secondi>10)
+        if (secondi > 10)
         {
             txtSecondi.Text = "Valore troppo grosso";
             return;
@@ -282,17 +261,5 @@ public partial class MainPage : ContentPage
         NomeCpu.Text = cpu.GetNome();
         GOpzioni.IsVisible = false;
         Applicazione.IsVisible = true;
-    }
-
-    private async void OnFPShare_Click(object sender, EventArgs e)
-    {
-        await Launcher.Default.OpenAsync(new Uri($"https://twitter.com/intent/tweet?text=Con%20la%20CBriscola%20la%20partita%20{g.GetNome()}%20contro%20{cpu.GetNome()}%20%C3%A8%20finita%20{g.GetPunteggio()}%20a%20{cpu.GetPunteggio()}&url=https%3A%2F%2Fgithub.com%2Fnumerunix%2Fcbriscola.maui"));
-        btnCondividi.IsEnabled = false;
-    }
-
-
-    private async void OnSito_Click(object sender, EventArgs e)
-    {
-        await Launcher.Default.OpenAsync(new Uri("https://github.com/numerunix/cbriscola.maui"));
     }
 }

@@ -11,7 +11,7 @@ using System;
 
 namespace org.altervista.numerone.framework
 {
-    interface GiocatoreHelper
+    public interface GiocatoreHelper
 	{
 		UInt16 Gioca(UInt16 i, Carta[] v, UInt16 numeroCarte);
 		UInt16 Gioca(UInt16 i, Carta[] v, UInt16 numeroCarte, Carta c);

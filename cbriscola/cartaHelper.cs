@@ -10,7 +10,7 @@
 using System;
 namespace org.altervista.numerone.framework
 {
-	interface CartaHelper
+	public interface CartaHelper
 	{
 		UInt16 GetSeme(UInt16 Carta);
 		UInt16 GetValore(UInt16 Carta);
