@@ -270,6 +270,11 @@ public partial class MainPage : ContentPage
             txtSecondi.Text = "Valore non valido";
             return;
         }
+        if (secondi>10)
+        {
+            txtSecondi.Text = "Valore troppo grosso";
+            return;
+        }
         Preferences.Set("secondi", secondi);
 
         t.Interval = TimeSpan.FromSeconds(secondi);

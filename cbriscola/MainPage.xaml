@@ -84,7 +84,7 @@
                 <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <Label Text="CBriscola versione 1.1.4" Grid.Row="0" />
+            <Label Text="CBriscola versione 1.1.5" Grid.Row="0" />
             <Label Text="Simulatore del gioco della briscola a due giocatori senza multiplayer"  Grid.Row="1"/>
             <Label Text="Autore: Giulio Sorrentino" Grid.Row="2" />
             <Label Text="Licenza: GPL v3 o, secondo la tua opionione, qualsiasi versione successiva" Grid.Row="3"/>
@@ -110,7 +110,7 @@
             <Entry x:Name="txtNomeUtente" Grid.Row="0" Grid.Column="1" />
             <Label x:Name="opNomeCpu" Grid.Row="1" Grid.Column="0" Text="Nome Cpu"/>
             <Entry x:Name="txtCpu" Grid.Row="1" Grid.Column="1" />
-            <Entry x:Name="txtSecondi" Grid.Row="2" Grid.Column="1" Keyboard="Numeric" />
+            <Entry x:Name="txtSecondi" Grid.Row="2" Grid.Column="1" Keyboard="Numeric" IsSpellCheckEnabled="false"/>
             <Label x:Name="Secondi" Grid.Row="2" Grid.Column="0" Text="Numero di secondi in cui mostrare le giocate"/>
             <CheckBox x:Name="cbCartaBriscola" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" IsChecked="True" />
             <Label x:Name="lbCartaBriscola" Grid.Row="3" Grid.Column="1" Text="La Carta che designa il seme di briscola può dar punti"/>
