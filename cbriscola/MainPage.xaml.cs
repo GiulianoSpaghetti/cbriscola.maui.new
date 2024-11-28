@@ -24,12 +24,12 @@ public partial class MainPage : ContentPage
 
         e = new ElaboratoreCarteBriscola(briscolaDaPunti);
         m = new Mazzo(e);
-        Carta.Inizializza(40, CartaHelperBriscola.GetIstanza(e));
+        Carta.Inizializza(40, new org.altervista.numerone.framework.briscola.CartaHelper(e.GetCartaBriscola()), "bastoni", "coppe", "denari", "spade");
         g = new Giocatore(new GiocatoreHelperUtente(), Preferences.Get("nomeUtente", "Giulio"), 3);
-        cpu = new Giocatore(new GiocatoreHelperCpu(ElaboratoreCarteBriscola.GetCartaBriscola()), Preferences.Get("nomeCpu", "Cpu"), 3);
+        cpu = new Giocatore(new GiocatoreHelperCpu2(e.GetCartaBriscola()), Preferences.Get("nomeCpu", "Cpu"), 3);
         primo = g;
         secondo = cpu;
-        briscola = Carta.GetCarta(ElaboratoreCarteBriscola.GetCartaBriscola());
+        briscola = Carta.GetCarta(e.GetCartaBriscola());
         gesture = new TapGestureRecognizer();
         gesture.Tapped += Image_Tapped;
         for (UInt16 i = 0; i < 3; i++)
@@ -48,11 +48,11 @@ public partial class MainPage : ContentPage
         PuntiUtente.Text = $"Punti di {g.GetNome()}: {g.GetPunteggio()}";
         NelMazzoRimangono.Text = $"Nel Mazzo rimangono {m.GetNumeroCarte()} carte";
         CartaBriscola.Text = $"Il seme di briscola è: {briscola.GetSemeStr()}";
-        VisualizzaImmagine(Carta.GetCarta(ElaboratoreCarteBriscola.GetCartaBriscola()).GetID(), 4, 4, false);
+        VisualizzaImmagine(Carta.GetCarta(e.GetCartaBriscola()).GetID(), 4, 4, false);
 
         t = Dispatcher.CreateTimer();
         t.Interval = TimeSpan.FromSeconds(secondi);
-        t.Tick += (s, e) =>
+        t.Tick += (s, evt) =>
         {
             Informazioni.Text = "";
             c = primo.GetCartaGiocata();
@@ -75,7 +75,7 @@ public partial class MainPage : ContentPage
                 CartaBriscola.Text = $"Il seme di Briscola è: {briscola.GetSemeStr()}";
                 if (m.GetNumeroCarte() == 0)
                 {
-                    ((Image)this.FindByName(Carta.GetCarta(ElaboratoreCarteBriscola.GetCartaBriscola()).GetID())).IsVisible = false;
+                    ((Image)this.FindByName(Carta.GetCarta(e.GetCartaBriscola()).GetID())).IsVisible = false;
                     NelMazzoRimangono.IsVisible = false;
                     if (avvisaTalloneFinito)
                         Informazioni.Text = "Il tallone è finito";
@@ -161,9 +161,9 @@ public partial class MainPage : ContentPage
     {
         e = new ElaboratoreCarteBriscola(briscolaDaPunti);
         m = new Mazzo(e);
-        briscola = Carta.GetCarta(ElaboratoreCarteBriscola.GetCartaBriscola());
+        briscola = Carta.GetCarta(e.GetCartaBriscola());
         g = new Giocatore(new GiocatoreHelperUtente(), g.GetNome(), 3);
-        cpu = new Giocatore(new GiocatoreHelperCpu(ElaboratoreCarteBriscola.GetCartaBriscola()), cpu.GetNome(), 3);
+        cpu = new Giocatore(new GiocatoreHelperCpu2(e.GetCartaBriscola()), cpu.GetNome(), 3);
         for (UInt16 i = 0; i < 3; i++)
         {
             g.AddCarta(m);
@@ -184,7 +184,7 @@ public partial class MainPage : ContentPage
         CartaBriscola.IsVisible = true;
         primo = g;
         secondo = cpu;
-        VisualizzaImmagine(Carta.GetCarta(ElaboratoreCarteBriscola.GetCartaBriscola()).GetID(), 4, 4, false);
+        VisualizzaImmagine(Carta.GetCarta(e.GetCartaBriscola()).GetID(), 4, 4, false);
         Applicazione.IsVisible = true;
     }
 
@@ -246,13 +246,23 @@ public partial class MainPage : ContentPage
         }
         catch (FormatException ex)
         {
-            txtSecondi.Text = "Valore non valido";
+            txtSecondi.Text = "Invalid rvalue";
+            return;
+        }
+        catch (OverflowException ex)
+        {
+            txtSecondi.Text = "invalid rvalue";
             return;
         }
         if (secondi > 10)
         {
             txtSecondi.Text = "Valore troppo grosso";
             return;
+        } else if (secondi < 1) 
+        {
+            txtSecondi.Text = "Valore troppo piccolo";
+            return;
+
         }
         Preferences.Set("secondi", secondi);
 
