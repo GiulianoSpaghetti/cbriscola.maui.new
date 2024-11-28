@@ -1,4 +1,4 @@
-## cbriscola.maui
+## cbriscola
 CBriscola in maui giocabile con le carte napoletane.
 
 Questa versione non ha le notifiche ma ha una volgarissima label, in oltre le opzioni sono nella doppia griglia, anche se maui.
